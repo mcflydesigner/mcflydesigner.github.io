@@ -1,0 +1,222 @@
+/* Mobile and Tablet versions */
+
+@media screen and (min-width: 320px) and (max-width: 359px){
+	body {
+		overflow-x:hidden;
+	}
+
+	#grid {
+		width: 300px;
+	}
+
+	h1 {
+		font-size: 90px;
+	}
+
+	.company hr {
+		width: 90%;
+	}
+
+	.simple p {
+		width: 300px;
+	}
+
+	.simple {
+		height: 520px;
+	}
+
+	.features .block {
+		width: 100%;
+	}
+
+	.block h3 {
+		margin-top: 5px;
+	}
+
+	.block p {
+		margin-top: 5px;
+		margin-bottom: 60px;
+	}
+
+	.images .image {
+		width: 100%;
+	}
+
+	.stay form input[type="text"],
+	.stay form input[type="email"] {
+		width: 300px;
+	}
+
+	footer {
+		height: auto;
+		border: none;
+	}
+
+	footer h3 {
+		float: none;
+		margin: 0 auto;
+		text-align: center;
+	}
+
+	footer .icons {
+		margin: 0 auto;
+		float: none;
+		text-align: center;
+		margin-bottom: 30px;
+	}
+
+	.mcfly_inform {
+		display: none;
+	}
+}
+
+@media screen and (min-width: 360px) and (max-width: 767px){
+	body {
+		overflow-x:hidden;
+	}
+
+	#grid {
+		width: 340px;
+	}
+
+	h1 {
+		font-size: 90px;
+	}
+
+	.company hr {
+		width: 90%;
+	}
+
+	.simple p {
+		width: 300px;
+	}
+
+	.simple {
+		height: 520px;
+	}
+
+	.features .block {
+		width: 100%;
+	}
+
+	.block h3 {
+		margin-top: 5px;
+	}
+
+	.block p {
+		margin-top: 5px;
+		margin-bottom: 60px;
+	}
+
+	.images .image {
+		width: 100%;
+	}
+
+	.stay form input[type="text"],
+	.stay form input[type="email"] {
+		width: 300px;
+	}
+
+	footer {
+		height: auto;
+		border: none;
+	}
+
+	footer h3 {
+		float: none;
+		margin: 0 auto;
+		text-align: center;
+	}
+
+	footer .icons {
+		margin: 0 auto;
+		float: none;
+		text-align: center;
+		margin-bottom: 30px;
+	}
+
+	.mcfly_inform {
+		display: none;
+	}
+}
+
+@media screen and (min-width: 768px) and (max-width: 799px) {
+	body {
+		overflow-x:hidden;
+	}
+
+	#grid {
+		width: 750px;
+	}
+
+	.images .image {
+		width: 50%;
+	}
+
+	.simple p {
+		width: 700px;
+	}
+
+	footer {
+		border: none;
+	}
+
+	.mcfly_inform {
+		display: none;
+	}
+}
+
+@media screen and (min-width: 800px) and (max-width: 979px) {
+	body {
+		overflow-x:hidden;
+	}
+
+	#grid {
+		width: 780px;
+	}
+
+	.images .image {
+		width: 50%;
+	}
+
+	.simple p {
+		width: 750px;
+	}
+
+	footer {
+		border: none;
+	}
+
+	.mcfly_inform {
+		display: none;
+	}
+}
+
+@media screen and (min-width: 980px) and (max-width: 1000px) {
+	body {
+		overflow-x:hidden;
+	}
+
+	#grid {
+		width: 900px;
+	}
+
+	.images .image {
+		width: 50%;
+	}
+
+	.simple p {
+		width: 850px;
+	}
+
+	.mcfly_inform {
+		display: none;
+	}
+
+	footer {
+		border: none;
+	}
+}
+
+
+

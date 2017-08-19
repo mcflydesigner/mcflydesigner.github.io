@@ -1,0 +1,415 @@
+	body {
+		font-family: 'Lato', Arial, Tahoma, sans-serif;
+		margin: 0;
+		padding: 0;
+	}
+
+	.clear {
+		clear: both;
+	}
+
+	#page {
+		background: url("../img/bg_top.jpg") repeat-x;
+	}
+
+	#grid {
+		width: 1150px;
+		margin: 0 auto;
+	}
+
+	header {
+		height: 0;
+		width: 1150px;
+		position: relative;
+		margin: 0 auto;
+	}
+
+	.logo_top {
+		line-height: 125px;
+		display: inline-block;
+	}
+
+	.logo_top img {
+		margin-left: 30px;
+	}
+
+	header h2 {
+		position: absolute;
+		margin: 0;
+		padding: 0;
+		font-size: 30px;
+		font-weight: 700;
+		line-height: 0;
+		display: inline-block;
+		color: #2d3950;
+		top: 50px;
+		left: 80px;
+	}
+
+	.company {
+		margin-top: 99px;
+		background: url("../img/bg_laptop.jpg") no-repeat;
+		text-align: center;
+		padding-bottom: 45px;
+	}
+
+	h1 {
+		padding: 0;
+		color: #fff;
+		padding-top: 215px;
+		font-size: 120px;
+		font-weight: bold;
+		margin: 0;
+	}
+
+	.company hr {
+		padding: 0;
+		margin: 0 auto;
+		margin-top: 5px;
+		height: 2px;
+		color: #15a4fa;
+		width: 600px;
+		border: 1px solid #15a4fa;
+		box-sizing: border-box;
+	}
+
+	.company p {
+		margin: 0;
+		margin-top: 40px;
+		padding: 0;
+		color: #fff;
+		font-size: 20px;
+		font-weight: 400;
+	}
+
+	.company .btn {
+		margin: 0 auto;
+		margin-top: 66px;
+		color: #fff;
+		font-size: 20px;
+		font-weight: 400;
+		padding: 20px 35px;
+		background: #15a4fa;
+		text-decoration: none;
+		display: block;
+		width: 200px;
+		box-sizing: border-box;
+		border-radius: 10px;
+	}
+
+	.company img {
+		margin: 0 auto;
+		margin-top: 175px;
+		display: block;
+	}
+
+	.simple {
+		height: 340px;
+		background: #f6f9f9;
+		text-align: center;
+	}
+
+	.simple h2 {
+		margin: 0;
+		padding: 0;
+		padding-top: 80px;
+		font-size: 40px;
+		color: #2d3950;
+	}
+
+	.simple p {
+		margin: 0 auto;
+		margin-top: 30px;
+		font-size: 20px;
+		color: #999999;
+		font-weight: 400;
+		width: 1110px;
+	}
+
+	.features {
+		margin-top: 70px;
+	}
+
+	.features .block {
+		width: 33.33333%;
+		float: left;
+		text-align: center;
+	}
+
+	.block h3 {
+		font-size: 22px;
+		color: #2d3950;
+		margin: 0;
+		padding: 0;
+		margin-top: 30px;
+		font-weight: 400;
+	}
+
+	.block p {
+		font-size: 15px;
+		color: #999999;
+		margin: 0 auto;
+		padding: 0;
+		margin-top: 10px;
+		width: 70%;
+		font-weight: 400;
+	}
+
+	.examples {
+		margin-top: 70px;
+		background: #f6f9f9;
+		text-align: center;
+	}
+
+	.examples h2 {
+		margin: 0 auto;
+		padding: 0;
+		padding-top: 80px;
+		font-size: 41px;
+		color: #2d3950;
+		font-weight: 400;
+	}
+
+	.examples p {
+		margin: 0 auto;
+		padding: 0;
+		margin-top: 20px;
+		font-size: 15px;
+		color: #909090;
+		font-weight: 400;
+	}
+
+	.images {
+		margin-top: 80px;
+		padding-bottom: 90px;
+	}
+
+	.images .image {
+		width: 33.333333%;
+		float: left;
+		padding-bottom: 30px;
+		background: #f6f9f9;
+		position: relative;
+		z-index: 0;
+	}
+	
+	.image:hover .icons-img {
+		transform: scale(1);
+	}
+	
+	.image .icons-img {
+		position: absolute;
+		top: 109px;
+		bottom: 109px;
+		left: 159px;
+		right: 159px;
+		z-index: 3;
+		transform: scale(0); 
+		transition: 0.5s;
+	}
+
+	.image .icons-img a {
+		margin: 0;
+		padding: 0;
+	}
+
+	.stay {
+		background: url("../img/bg-stay.jpg") no-repeat;
+		text-align: center;
+	}
+
+	.stay h2 {
+		margin: 0 auto;
+		padding: 0;
+		padding-top: 75px;
+		font-size: 41px;
+		color: #fff;
+		font-weight: 400;
+	}
+
+	.stay p {
+		font-size: 15px;
+		color: #999999;
+		margin: 0;
+		padding: 0;
+		padding-top: 20px;
+	}
+
+	.stay form {
+		margin-top: 50px;
+	}
+
+	.stay form input[type="text"],
+	.stay form input[type="email"] {
+		display: block;
+		margin: 0 auto;
+		margin-bottom: 19px;
+		border-radius: 5px;
+		background: none;
+		width: 556px;
+		height: 62px;
+		padding: 20px;
+		box-sizing: border-box;
+		color: #999999;
+		border: 1px solid #999999;
+	}
+
+	.stay form input placeholder {
+		color: #fff;
+	}
+
+	.stay form input.name {
+		border: 1px solid #fff;
+		color: #fff;
+	}
+
+	.stay form label {
+		color: #fff;
+		font-size: 15px;
+		float: left;
+	}
+
+	.stay form input[type="submit"] {
+		margin: 20px auto 70px auto;
+		font-size: 18px;
+		width: 150px;
+		color: #fff;
+		background: none;
+		border: 1px solid #15a4fa;
+		border-radius: 5px;
+		padding: 15px;
+		cursor: pointer;
+		box-sizing: border-box;
+	}
+
+	.stay form input[type="submit"]:hover {
+		background: #15a4fa;
+	}
+
+	footer {
+		height: 90px;
+		box-sizing: border-box;
+		border-bottom: 1px dashed #999;
+	}
+	
+	footer h3 {
+		margin: 0;
+		padding: 0;
+		font-size: 15px;
+		color: #999999;
+		line-height: 90px;
+		float: left;
+	}
+
+	footer .icons {
+		margin: 25px auto;
+		float: right;
+	}
+
+	.icons .icon {
+		display: inline-block;
+		height: 40px;
+		width: 40px;
+		border-radius: 4px;
+		margin: auto 2px;
+		cursor: pointer;
+	}
+	
+	.icons .icon-1 {
+		background: url("../img/icon-set.png");
+	}
+
+	.icons .icon-1:hover {
+		background: url("../img/icon-set-active.png");
+	}
+
+	.icons .icon-2 {
+		background: url("../img/icon-set.png");
+		background-position: -46px 0;
+	}
+
+	.icons .icon-2:hover {
+		background: url("../img/icon-set-active.png");
+		background-position: -46px 0;
+	}
+
+	.icons .icon-3 {
+		background: url("../img/icon-set.png");
+		background-position: -91px 0;
+	}
+
+	.icons .icon-3:hover {
+		background: url("../img/icon-set-active.png");
+		background-position: -91px 0;
+	}
+
+	.icons .icon-4 {
+		background: url("../img/icon-set.png");
+		background-position: -136px 0;
+	}
+
+	.icons .icon-4:hover {
+		background: url("../img/icon-set-active.png");
+		background-position: -136px 0;
+	}
+	
+	/* Table Version*/
+	.mcfly_inform {
+		width: 800px;
+		height: auto;
+		margin: 0 auto;
+		text-align: center;		
+	}
+
+	.mcfly_inform p {
+		font-size: 20px;
+		margin: 0 auto;
+		padding: 0;
+		color: #777;
+		margin-top: 10px;
+	}
+
+	.mcfly_inform h3 {
+		font-size: 40px;
+		color: #333;
+		margin: 0 auto;
+		padding: 100px 0 50px 0;
+	}
+
+	.table  {
+		width: 100%;
+		height: 600px;
+		border-radius: 3px;
+		border: 1px solid #e6e6e6;
+		box-shadow: 0 0 5px #c5c5c5;
+	}
+
+	.mobile  {
+		width: 360px;
+		height: 480px;
+		border-radius: 3px;
+		border: 1px solid #e6e6e6;	
+		box-shadow: 0 0 5px #c5c5c5;
+	}
+
+	.mcfly_inform a {
+		display: block;
+		margin: 0 auto;
+		margin-top: 40px;
+		text-decoration: none;
+		font-size: 40px;
+		color: #15a4fa;
+	}
+
+	.mcfly_inform .contact {
+		display: block;
+		margin: 0 auto;
+		margin-top: 20px;
+		padding: 10px 15px;
+		width: 150px;
+		border: 1px solid #15a4fa;
+		text-decoration: none;
+		font-size: 20px;
+		color: #15a4fa;
+		margin-bottom: 20px;
+	}
