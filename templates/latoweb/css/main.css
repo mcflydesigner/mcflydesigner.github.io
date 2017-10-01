@@ -401,8 +401,8 @@
 		margin: 0 auto;
 		margin-top: 40px;
 		text-decoration: none;
-		font-size: 40px;
-		color: #15a4fa;
+		font-size: 20px;
+		color: black;
 	}
 
 	.mcfly_inform .contact {
@@ -413,7 +413,7 @@
 		width: 150px;
 		border: 1px solid #15a4fa;
 		text-decoration: none;
-		font-size: 20px;
-		color: #15a4fa;
+		font-size: 18px;
+		color: black;
 		margin-bottom: 20px;
 	}
