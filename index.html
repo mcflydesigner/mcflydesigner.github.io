@@ -17,14 +17,18 @@
 	</section>
 
 	<section id="game">
-		<p id="task">Translate this word:</p>
-		<p id="word">word</p>
-		<form action="#" autocomplete="off">
-			<input type="text" id="us_answer">
-			<button onclick="game_handle()">next</button>
-		</form>
+		<div class="parent">
+			<div class="block">
+				<p id="task">Translate this word:</p>
+				<p id="word">word</p>
+				<form action="#" autocomplete="off">
+					<input type="text" id="us_answer">
+					<button onclick="game_handle()">next</button>
+				</form>
+			</div>
+		</div>
 	</section>
-	
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script type="text/javascript">
 		let coll = new Map();
