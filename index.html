@@ -21,9 +21,11 @@
 			<div class="block">
 				<p id="task">Translate this word:</p>
 				<p id="word">word</p>
+				<p id="pfs">(noun)</p>
 				<form onsubmit="return false;" autocomplete="off">
 					<input type="text" id="us_answer">
 					<button onclick="game_handle()">next</button>
+					<p id="counter">1/6</p>
 				</form>
 			</div>
 		</div>
@@ -32,6 +34,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script type="text/javascript">
 		let coll = new Map();
+		let pfs = new Map();
 		
 		//Data section
 		var words = ["absorb", "bell", "belt", "cable", "cancer", "cap"];
@@ -41,10 +44,17 @@
 		coll.set('cable', ['кабель']);
 		coll.set('cancer', ['рак']);
 		coll.set('cap', ['кепка']);
+
+		pfs.set('absorb', ['verb']);
+		pfs.set('bell', ['noun']);
+		pfs.set('belt', ['noun']);
+		pfs.set('cable', ['noun']);
+		pfs.set('cancer', ['noun']);
+		pfs.set('cap', ['noun']);
+
 		//Data section
 
 		var counter = -1;
-		var error = false;
 		var start = words;
 
 		function compareRandom(a, b) {
@@ -65,51 +75,48 @@
 
 		function game_handle() {
 			//handle mistakes
-			if(error) {
-				error = false;
-				counter++;
-				set_word();
-			}
-			else {
-				var right_answers = coll.get(words[counter]);
-				var flag = false;
+			
+			var right_answers = coll.get(words[counter]);
+			var flag = false;
 
-				for(var i = 0; i < right_answers.length; i++) {
-					if(document.getElementById("us_answer").value.toLowerCase() == right_answers[i].toLowerCase()) {
+			for(var i = 0; i < right_answers.length; i++) {
+				if(document.getElementById("us_answer").value.toLowerCase() == right_answers[i].toLowerCase()) {
 
-						flag = true;
+					flag = true;
 
-						document.getElementById("us_answer").style.background = "#57CE79";
-						document.getElementById("us_answer").style.border = "1px solid #57CE79";
-						document.getElementById("us_answer").style.color = "#fff";
+					document.getElementById("us_answer").style.background = "#57CE79";
+					document.getElementById("us_answer").style.border = "1px solid #57CE79";
+					document.getElementById("us_answer").style.color = "#fff";
 
-						setTimeout(function () {
-				        counter++;
-								set_word();
-				    }, 1500);
+					setTimeout(function () {
+						counter++;
+						set_word();
+					}, 1500);
 
-				    break;
-					}
+					break;
 				}
+			}
 
-				if(!flag) {
+			if(!flag) {
 					//alert("false");
-					error = true;
 					words.push(words[counter]);
 					document.getElementById("us_answer").value = coll.get(words[counter]).join(",");
 					document.getElementById("us_answer").style.background = "#D63C3C";
 					document.getElementById("us_answer").style.border = "1px solid #D63C3C";
 					document.getElementById("us_answer").style.color = "#fff";
+
+					setTimeout(function () {
+						counter++;
+						set_word();
+					}, 2000);
 				} 
 
 			}
 
-		}
 
 
 
-
-		function set_word() {
+			function set_word() {
 			//Restart game
 			if(words[counter] == null) {
 				//alert("restart");
@@ -119,10 +126,12 @@
 			} 
 
 			document.getElementById("word").innerHTML = words[counter];
+			document.getElementById("pfs").innerHTML = "(" + pfs.get(words[counter]) + ")";
 			document.getElementById("us_answer").style.background = "none";
 			document.getElementById("us_answer").style.border = "1px solid black";
 			document.getElementById("us_answer").style.color = "black";
 			document.getElementById("us_answer").value = "";
+			document.getElementById("counter").innerHTML = (counter + 1) + "/" + words.length;
 		}
 	</script>
 	<script type="text/javascript">

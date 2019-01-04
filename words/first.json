@@ -1,0 +1,26 @@
+{
+  "words": [
+    "absorb", 
+    "bell", 
+    "belt", 
+    "cable", 
+    "cancer", 
+    "cap"
+  ],
+  "translate": [
+    ["всасывать", "впитывать"],
+    ["колокол"],
+    ["пояс"],
+    ["кабель"],
+    ["рак"],
+    ["кепка"]
+  ],
+  "partofspeech": [
+    ["verb"],
+    ["noun"],
+    ["noun"],
+    ["noun"],
+    ["noun"],
+    ["noun"]
+  ]
+}
