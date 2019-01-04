@@ -33,46 +33,53 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script type="text/javascript">
-		let coll = new Map();
-		let pfs = new Map();
-		
-		//Data section
-		var words = ["absorb", "bell", "belt", "cable", "cancer", "cap"];
-		coll.set('absorb', ['всасывать', 'впитывать']);
-		coll.set('bell', ['колокол']);
-		coll.set('belt', ['пояс']);
-		coll.set('cable', ['кабель']);
-		coll.set('cancer', ['рак']);
-		coll.set('cap', ['кепка']);
+		var url = "https://mcflydesigner.github.io/words/first.json";
+		var jsonFile = new XMLHttpRequest();
+		jsonFile.open("GET",url,true);
+		jsonFile.send();
 
-		pfs.set('absorb', ['verb']);
-		pfs.set('bell', ['noun']);
-		pfs.set('belt', ['noun']);
-		pfs.set('cable', ['noun']);
-		pfs.set('cancer', ['noun']);
-		pfs.set('cap', ['noun']);
-
-		//Data section
+		jsonFile.onreadystatechange = function() {
+		  if (jsonFile.readyState == 4 && jsonFile.status == 200) {
+		  		//alert(jsonFile.responseText);
+		      set_data(jsonFile.responseText);
+		  }
+		}
 
 		var counter = -1;
-		var start = words;
+		var start = [];
+		var words = [];
+		let coll = new Map();
+		let pfs = new Map();
 
+		//Initialize all data from JSON file
+		function set_data(datajson) {
+			data = JSON.parse(datajson);
+
+		  for(var i = 0; i < data.words.length; i++) {
+		   	window.words.push(data.words[i]);
+		   	coll.set(data.words[i], data.translate[i]);
+				pfs.set(data.words[i], data.partofspeech[i]);
+		  }
+
+		  window.start = words;
+		}
+
+
+		//Sort of word list
 		function compareRandom(a, b) {
 			return Math.random() - 0.5;
 		}
 
+		//Start game
 		function start_game() {
 			document.getElementById("header").style.display = "none";
 			document.getElementById("main").style.display = "none";
 			$("#game").fadeIn(1000);
-
-
-			//words.sort(compareRandom);
 			set_word();
 		}
 
 
-
+		//Button "next"
 		function game_handle() {
 			//handle mistakes
 			
@@ -115,7 +122,7 @@
 
 
 
-
+			//Change the word
 			function set_word() {
 			//Restart game
 			if(words[counter] == null) {
