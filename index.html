@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Beta test training words</title>
+	<title>Training words</title>
 	<link rel="stylesheet" href="css/style.css">
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,12 +31,12 @@
 		
 		//Data section
 		var words = ["absorb", "bell", "belt", "cable", "cancer", "cap"];
-		coll.set('absorb', 'всасывать');
-		coll.set('bell', 'колокол');
-		coll.set('belt', 'пояс');
-		coll.set('cable', 'кабель');
-		coll.set('cancer', 'рак');
-		coll.set('cap', 'кепка');
+		coll.set('absorb', ['всасывать', 'впитывать']);
+		coll.set('bell', ['колокол']);
+		coll.set('belt', ['пояс']);
+		coll.set('cable', ['кабель']);
+		coll.set('cancer', ['рак']);
+		coll.set('cap', ['кепка']);
 		//Data section
 
 		var counter = -1;
@@ -67,28 +67,39 @@
 				set_word();
 			}
 			else {
-				var answer = document.getElementById("us_answer").value;
-				if(answer != coll.get(words[counter])) {
+				var right_answers = coll.get(words[counter]);
+				var flag = false;
+
+				for(var i = 0; i < right_answers.length; i++) {
+					if(document.getElementById("us_answer").value.toLowerCase() == right_answers[i].toLowerCase()) {
+
+						flag = true;
+
+						document.getElementById("us_answer").style.background = "#57CE79";
+						document.getElementById("us_answer").style.border = "1px solid #57CE79";
+						document.getElementById("us_answer").style.color = "#fff";
+
+						setTimeout(function () {
+				        counter++;
+								set_word();
+				    }, 1500);
+
+				    break;
+					}
+				}
+
+				if(!flag) {
 					//alert("false");
 					error = true;
 					words.push(words[counter]);
-					document.getElementById("us_answer").value = coll.get(words[counter]);
+					document.getElementById("us_answer").value = coll.get(words[counter]).join(",");
 					document.getElementById("us_answer").style.background = "#D63C3C";
 					document.getElementById("us_answer").style.border = "1px solid #D63C3C";
 					document.getElementById("us_answer").style.color = "#fff";
-				} else {
-					//alert(answer);
-					document.getElementById("us_answer").style.background = "#57CE79";
-					document.getElementById("us_answer").style.border = "1px solid #57CE79";
-					document.getElementById("us_answer").style.color = "#fff";
+				} 
 
-					setTimeout(function () {
-			        counter++;
-							set_word();
-			    }, 1500);
-					
-				}
 			}
+
 		}
 
 
