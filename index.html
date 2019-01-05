@@ -13,7 +13,21 @@
 	</header>
 
 	<section id="main">
-		<button onclick="view_games()">Start</button>	
+		<button onclick="view_dictionaries()">Start</button>	
+	</section>
+
+	<section id="dict">
+		<p>Select the dictionary:</p>
+		<div class="block-th">
+			<button onclick='select_dictionary("first");'>First</button>
+			<button onclick='select_dictionary("second");'>Second</button>
+			<button onclick='select_dictionary("third");'>Third</button>
+		</div>
+		<div class="block-th">
+			<button onclick='select_dictionary("fourth");'>Fourth</button>
+			<button onclick='select_dictionary("fifth");'>Fifth</button>
+			<button onclick='select_dictionary("sixth");'>Sixth</button>
+		</div>
 	</section>
 
 	<section id="select_game">
@@ -39,21 +53,19 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script type="text/javascript">
-		var url = "https://mcflydesigner.github.io/words/first.json";
 		var jsonFile = new XMLHttpRequest();
-		jsonFile.open("GET",url,true);
-		jsonFile.send();
+		var url = "https://mcflydesigner.github.io/words/";
 
 		jsonFile.onreadystatechange = function() {
 			if (jsonFile.readyState == 4 && jsonFile.status == 200) {
 		  		//alert(jsonFile.responseText);
 		  		set_data_er(jsonFile.responseText);
 		  		set_data_re(jsonFile.responseText);
-		  	}
 		  }
+		}
 
-		  var counter = -1;
-		  var game = -1;
+		var counter = -1;
+		var game = -1;
 
 		//R -> E
 		var rstart = [];
@@ -67,9 +79,35 @@
 		let ecoll = new Map();
 		let epfs = new Map();
 
+		function select_dictionary(dictionary) {
+			switch(dictionary) {
+				case "first":
+					window.url += "first.json";
+					break;
+
+				case "second":
+					window.url += "second.json";
+					break;
+
+				default:
+					alert("Словарика еще нет :)");
+					break;
+			}
+
+			jsonFile.open("GET",url,true);
+			jsonFile.send();
+			view_games();
+		}
+
+		//View all dictionaries for user
+		function view_dictionaries() {
+			$("#main").fadeOut(500);
+			$("#dict").fadeIn(2000);
+		}
+
 		//Select the game
 		function view_games() {
-			$("#main").fadeOut(500);
+			$("#dict").fadeOut(500);
 			$("#select_game").fadeIn(2000);
 		}
 
