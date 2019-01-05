@@ -1,9 +1,22 @@
 {
   "words": [
-    ["hello", ["привет", "хай"], "noun"], 
-    ["car", ["автомобиль"], "noun"], 
-    ["bus", ["автобус"], "noun"],
-    ["absent", ["отсутствовать"], "verb"],
-    ["consistent", ["постоянный"], "adj"]
+    ["straight hair", ["прямые волосы"], "phrase"],
+    ["wavy", ["волнистый"], "adjective"],
+    ["curly", ["кудрявый"], "adjective"],
+    ["bald", ["лысый"], "adjective"],
+    ["shoulder-length hair", ["волосы по плечи"], "phrase"],
+    ["fringe", ["челка"], "noun"],
+    ["pigtail", ["коса"], "noun"],
+    ["ponytail", ["хвост"], "noun"],
+    ["fair hair", ["светлые волосы"], "phrase"],
+    ["ginger-haired", ["рыжеволосый"], "adjective"],
+    ["auburn", ["красно-коричневый "], "adjective"],
+    ["thin-faced", ["узколицый"], "adjective"],
+    ["round-faced", ["круглолицый"], "adjective"],
+    ["dark-skinned", ["темнокожий"], "adjective"],
+    ["freckles", ["веснушки"], "noun"],
+    ["beard", ["борода"], "noun"],
+    ["mustache", ["усы"], "noun"],
+    ["wrinkles", ["морщины"], "noun"]
   ]
 }
