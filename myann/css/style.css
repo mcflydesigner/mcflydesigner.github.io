@@ -1,0 +1,304 @@
+* {
+	font-family: 'Roboto', sans-serif;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
+#bg {
+	display: none;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center top;
+	background: url(https://pp.userapi.com/c852024/v852024749/7c5f6/bz3RZ7p-aTw.jpg) no-repeat;
+}
+
+header {
+	display: none;
+}
+
+header h1 {
+	padding-top: 200px;
+	text-align: center;
+	display: block;
+	margin: 20px auto;
+	font-size: 80px;
+	color: #fff;
+	font-weight: 100;
+}
+
+h1 {
+	font-weight: 100;
+	font-size: 35px;
+	color: #fff;
+}
+
+#main {
+	text-align: center;
+	display: none;
+}
+
+#main button {
+	display: block;
+	margin: 80px auto;
+	background: black;
+	font-size: 28px;
+	color: #fff;
+	font-weight: 100;
+	width: 200px;
+	padding: 10px 10px;
+	border: 1px solid black;
+}
+
+#main button:hover {
+	background: none;
+	color: black;
+	transition: 1s background;
+	cursor: pointer;
+}
+
+#main button:active, :hover, :focus {
+	outline: 0;
+	outline-offset: 0;
+}
+
+
+
+#dict {
+	text-align: center;
+	display: none;
+}
+
+#dict p {
+	font-weight: 100;
+	font-size: 28px;
+	margin: 10px;
+	padding: 0;
+}
+
+#dict .block-th {
+	margin: 0 auto;
+	width: 600px;
+}
+
+#dict .block-th button {
+	display: inline-block;
+	background: none;
+	color: black;
+	font-size: 20px;
+	width: 120px;
+	font-weight: 100;
+	height: 70px;
+	border: 1px solid black;
+	margin: 20px;
+	cursor: pointer;
+}
+
+#dict .block-th button:hover {
+	background: black;
+	color: #fff;
+	transition: 0.7s background;
+}
+
+
+#game {
+	display: none;
+	margin: 0 auto;
+	text-align: center;
+	word-wrap: normal;
+}
+
+#game #task {
+	font-size: 28px;
+	font-weight: 100;
+	margin-bottom: 5px;
+}
+
+#game #word {
+	font-size: 50px;
+	font-weight: bold;
+	margin-top: 0;
+	padding: 0;
+	margin-bottom: 0px;
+	display: inline-block;
+	max-width: 350px;
+	overflow: hidden;
+}
+
+#game #pfs {
+	margin: 0px auto;
+	padding: 0;
+	color: #7C7C7C;
+	font-size: 24px;
+	vertical-align: middle;
+}
+
+#game #counter {
+	margin: 0;
+	padding: 0;
+	color: #7C7C7C;
+	font-size: 24px;
+}
+
+#game {
+	width: 100%;
+}
+
+#game input, button {
+	display: block;
+	margin: 10px auto;
+}
+
+#game input {
+	width: 90%;
+	padding: 10px 15px;
+	background: none;
+	border: 1px solid black;
+	font-size: 20px;
+	color: black;
+	transition: 0.5s background;
+}
+
+#game input:active, :hover, :focus {
+	outline: 0;
+	outline-offset: 0;
+}
+
+
+#game button {
+	margin: 30px auto;
+	background: black;
+	color: #fff;
+	font-size: 20px;
+	font-weight: 100;
+	width: 100px;
+	padding: 10px;
+	border: 1px solid black;
+}
+
+#game button:hover {
+	background: none;
+	color: black;
+	transition: 1s background;
+	cursor: pointer;
+}
+
+#game img {
+	margin: 2px;
+	margin-top: 50px;
+	width: 50px;
+}
+
+.parent {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	overflow: auto;
+}
+
+
+.block {
+	width: 350px;
+	height: 350px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -175px 0 0 -175px;
+}
+
+
+
+
+
+#select_game {
+	display: none;
+	text-align: center;
+}
+
+#select_game p {
+	font-size: 28px;
+	margin: 10px;
+	padding: 0;
+}
+
+#select_game button {
+	display: inline-block;
+	font-size: 24px;
+	border: 1px solid black;
+	background: none;
+	padding: 20px;
+	color: black;
+	margin: 20px;
+	cursor: pointer;
+}
+
+#select_game button:hover {
+	background: black;
+	color: #fff;
+	transition: 0.7s background;
+}
+
+@media screen and (max-width: 800px) {
+	header h1 {
+		padding-top: 100px;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	#dict .block-th {
+		width: 100%;
+	}
+
+	#dict .block-th button {
+		display: block;
+		margin: 30px auto;
+		width: 200px;
+	}
+}
+
+@media screen and (max-width: 400px) {
+	header h1{
+		font-size: 60px;
+		font-weight: 100;
+	}
+
+	.block {
+		width: 300px;
+		height: 300px;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin: -150px 0 0 -150px;
+	}
+
+	#game #word {
+		font-size: 50px;
+		font-weight: 100;
+	}
+
+	#game #pfs {
+		font-size: 18px;
+		font-weight: 100;
+	}
+	
+	#game button {
+		margin-bottom: 15px;
+	}
+
+	#game img {
+		margin-top: 15px;
+	}
+
+	#dict p {
+		font-weight: 100;
+	}
+
+	#dict .block-th button {
+		font-weight: 100;
+	}
+
+}
