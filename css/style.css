@@ -68,7 +68,7 @@ header h1 {
 	width: 600px;
 }
 
-#dict .block-th button{
+#dict .block-th button {
 	display: inline-block;
 	background: none;
 	color: black;
@@ -261,12 +261,13 @@ header h1 {
 	}
 
 	#game #word {
-		font-size: 40px;
+		font-size: 50px;
 		font-weight: 100;
 	}
 
 	#game #pfs {
 		font-size: 18px;
+		font-weight: 100;
 	}
 	
 	#game button {
@@ -276,4 +277,13 @@ header h1 {
 	#game img {
 		margin-top: 15px;
 	}
+
+	#dict p {
+		font-weight: 100;
+	}
+
+	#dict .block-th button {
+		font-weight: 100;
+	}
+
 }
