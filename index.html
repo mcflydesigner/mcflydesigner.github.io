@@ -13,7 +13,13 @@
 	</header>
 
 	<section id="main">
-		<button onclick="start_game()">Start</button>	
+		<button onclick="view_games()">Start</button>	
+	</section>
+
+	<section id="select_game">
+		<p>Select the mode:</p>
+		<button onclick="start_game_er()">En -> Ru</button>	
+		<button onclick="start_game_re()">Ru -> En</button>	
 	</section>
 
 	<section id="game">
@@ -24,7 +30,7 @@
 				<p id="pfs">(noun)</p>
 				<form onsubmit="return false;" autocomplete="off">
 					<input type="text" id="us_answer">
-					<button onclick="game_handle()">next</button>
+					<button onclick="select_handler();">next</button>
 					<p id="counter">1/6</p>
 				</form>
 			</div>
@@ -39,51 +45,167 @@
 		jsonFile.send();
 
 		jsonFile.onreadystatechange = function() {
-		  if (jsonFile.readyState == 4 && jsonFile.status == 200) {
+			if (jsonFile.readyState == 4 && jsonFile.status == 200) {
 		  		//alert(jsonFile.responseText);
-		      set_data(jsonFile.responseText);
-		  }
-		}
-
-		var counter = -1;
-		var start = [];
-		var words = [];
-		let coll = new Map();
-		let pfs = new Map();
-
-		//Initialize all data from JSON file
-		function set_data(datajson) {
-			data = JSON.parse(datajson);
-
-		  for(var i = 0; i < data.words.length; i++) {
-		   	window.words.push(data.words[i]);
-		   	coll.set(data.words[i], data.translate[i]);
-				pfs.set(data.words[i], data.partofspeech[i]);
+		  		set_data_er(jsonFile.responseText);
+		  		set_data_re(jsonFile.responseText);
+		  	}
 		  }
 
-		  window.start = words;
-		}
+		  var counter = -1;
+		  var game = -1;
 
+		//R -> E
+		var rstart = [];
+		var rwords = [];
+		let rcoll = new Map();
+		let rpfs = new Map();
+
+		//E -> R
+		var estart = [];
+		var ewords = [];
+		let ecoll = new Map();
+		let epfs = new Map();
+
+		//Select the game
+		function view_games() {
+			$("#main").fadeOut(500);
+			$("#select_game").fadeIn(2000);
+		}
 
 		//Sort of word list
 		function compareRandom(a, b) {
 			return Math.random() - 0.5;
 		}
 
+		//Handler for either games
+		function select_handler() {
+			if(game == 0) game_handle_re();
+			else game_handle_er();
+		}
+
+
+
+
+
+		//=============================================================
+		// 										Russian -> English
+		//=============================================================
+		function set_data_re(datajson) {
+			data = JSON.parse(datajson);
+
+			for(var i = 0; i < data.words.length; i++) {
+				window.ewords.push(data.translate[i][0]);
+				ecoll.set(data.translate[i][0], data.words[i]);
+				var pofs = data.partofspeech[i];
+				if(pofs.join() == "verb") pofs = ["гл."];
+				else if(pofs.join() == "noun") pofs = ["сущ."];
+				else pofs = ["прил."];
+				epfs.set(data.translate[i][0], pofs);
+			}
+
+			window.estart = ewords;
+		}
+
 		//Start game
-		function start_game() {
+		function start_game_re() {
+			game = 0;
 			document.getElementById("header").style.display = "none";
 			document.getElementById("main").style.display = "none";
+			document.getElementById("select_game").style.display = "none";
 			$("#game").fadeIn(1000);
-			set_word();
+
+			set_word_re();
+		}
+
+		//Button "next"
+		function game_handle_re() {
+			//handle mistakes
+			var right_answer = ecoll.get(ewords[counter]);
+			var flag = false;
+
+			if(document.getElementById("us_answer").value.toLowerCase() == right_answer.toLowerCase()) {
+				document.getElementById("us_answer").style.background = "#57CE79";
+				document.getElementById("us_answer").style.border = "1px solid #57CE79";
+				document.getElementById("us_answer").style.color = "#fff";
+
+				flag = true;
+				setTimeout(function () {
+					counter++;
+					set_word_re();
+				}, 1500);
+			}
+
+			if(!flag) {
+					//alert("false");
+					ewords.push(ewords[counter]);
+					document.getElementById("us_answer").value = ecoll.get(ewords[counter]);
+					document.getElementById("us_answer").style.background = "#D63C3C";
+					document.getElementById("us_answer").style.border = "1px solid #D63C3C";
+					document.getElementById("us_answer").style.color = "#fff";
+
+					setTimeout(function () {
+						counter++;
+						set_word_re();
+					}, 2000);
+				} 
+			}
+
+		//Change the word
+		function set_word_re() {
+				//Restart game
+				if(ewords[counter] == null) {
+					//alert("restart");
+					counter = 0;
+					ewords = estart;
+					ewords.sort(compareRandom);
+				} 
+
+				document.getElementById("word").innerHTML = ewords[counter];
+				document.getElementById("pfs").innerHTML = "(" + epfs.get(ewords[counter]) + ")";
+				document.getElementById("us_answer").style.background = "none";
+				document.getElementById("us_answer").style.border = "1px solid black";
+				document.getElementById("us_answer").style.color = "black";
+				document.getElementById("us_answer").value = "";
+				document.getElementById("counter").innerHTML = (counter + 1) + "/" + ewords.length;
+			}
+
+
+
+
+
+
+		//=============================================================
+		//										Enlgish -> Russian
+		//=============================================================
+		//Initialize all data from JSON file
+		function set_data_er(datajson) {
+			game = 1;
+			data = JSON.parse(datajson);
+
+			for(var i = 0; i < data.words.length; i++) {
+				window.rwords.push(data.words[i]);
+				rcoll.set(data.words[i], data.translate[i]);
+				rpfs.set(data.words[i], data.partofspeech[i]);
+			}
+
+			window.rstart = rwords;
+		}
+
+		//Start game
+		function start_game_er() {
+			document.getElementById("header").style.display = "none";
+			document.getElementById("main").style.display = "none";
+			document.getElementById("select_game").style.display = "none";
+			$("#game").fadeIn(1000);
+			set_word_er();
 		}
 
 
 		//Button "next"
-		function game_handle() {
+		function game_handle_er() {
 			//handle mistakes
-			
-			var right_answers = coll.get(words[counter]);
+			var right_answers = rcoll.get(rwords[counter]);
 			var flag = false;
 
 			for(var i = 0; i < right_answers.length; i++) {
@@ -97,7 +219,7 @@
 
 					setTimeout(function () {
 						counter++;
-						set_word();
+						set_word_er();
 					}, 1500);
 
 					break;
@@ -106,47 +228,48 @@
 
 			if(!flag) {
 					//alert("false");
-					words.push(words[counter]);
-					document.getElementById("us_answer").value = coll.get(words[counter]).join(",");
+					rwords.push(rwords[counter]);
+					document.getElementById("us_answer").value = rcoll.get(rwords[counter]).join(",");
 					document.getElementById("us_answer").style.background = "#D63C3C";
 					document.getElementById("us_answer").style.border = "1px solid #D63C3C";
 					document.getElementById("us_answer").style.color = "#fff";
 
 					setTimeout(function () {
 						counter++;
-						set_word();
+						set_word_er();
 					}, 2000);
 				} 
+			}
 
+			//Change the word
+			function set_word_er() {
+				//Restart game
+				if(rwords[counter] == null) {
+					//alert("restart");
+					counter = 0;
+					rwords = rstart;
+					rwords.sort(compareRandom);
+				} 
+
+				document.getElementById("word").innerHTML = rwords[counter];
+				document.getElementById("pfs").innerHTML = "(" + rpfs.get(rwords[counter]) + ")";
+				document.getElementById("us_answer").style.background = "none";
+				document.getElementById("us_answer").style.border = "1px solid black";
+				document.getElementById("us_answer").style.color = "black";
+				document.getElementById("us_answer").value = "";
+				document.getElementById("counter").innerHTML = (counter + 1) + "/" + rwords.length;
 			}
 
 
 
-			//Change the word
-			function set_word() {
-			//Restart game
-			if(words[counter] == null) {
-				//alert("restart");
-				counter = 0;
-				words = start;
-				words.sort(compareRandom);
-			} 
 
-			document.getElementById("word").innerHTML = words[counter];
-			document.getElementById("pfs").innerHTML = "(" + pfs.get(words[counter]) + ")";
-			document.getElementById("us_answer").style.background = "none";
-			document.getElementById("us_answer").style.border = "1px solid black";
-			document.getElementById("us_answer").style.color = "black";
-			document.getElementById("us_answer").value = "";
-			document.getElementById("counter").innerHTML = (counter + 1) + "/" + words.length;
-		}
-	</script>
-	<script type="text/javascript">
-		//Animation appear
-		$("#header").fadeIn(800);
-		$("#main").fadeIn(1000);
-	</script>
-</body>
-</html>
+
+
+			//Animation appear
+			$("#header").fadeIn(800);
+			$("#main").fadeIn(1000);
+		</script>
+	</body>
+	</html>
 
 

@@ -154,6 +154,34 @@ header h1 {
 	margin: -175px 0 0 -175px;
 }
 
+#select_game {
+	display: none;
+	text-align: center;
+}
+
+#select_game p {
+	font-size: 28px;
+	margin: 10px;
+	padding: 0;
+}
+
+#select_game button {
+	display: inline-block;
+	font-size: 24px;
+	border: 1px solid black;
+	background: none;
+	padding: 20px;
+	color: black;
+	margin: 20px;
+	cursor: pointer;
+}
+
+#select_game button:hover {
+	background: black;
+	color: #fff;
+	transition: 0.7s background;
+}
+
 @media screen and (max-width: 800px) {
 	header h1 {
 		padding-top: 100px;
