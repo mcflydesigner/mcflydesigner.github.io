@@ -7,6 +7,122 @@ body {
 	padding: 0;
 }
 
+
+#wrap{
+	display: none;
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	padding: 16px;
+	background: #333333;
+	z-index: 100;
+	overflow: auto;
+}
+
+#window{
+	border-radius: 5px;
+	max-width: 700px;
+	height: 500px;
+	margin: 50px auto;
+	display: none;
+	background: #fff;
+	color: black;
+	z-index: 200;
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	padding: 16px;
+}
+
+.close{
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	top: -10px;
+	right: -10px;
+	cursor: pointer;
+	z-index: 1000;
+}
+
+#faq button {
+	cursor: pointer;
+	text-align: center;
+	width: 45px;
+	height: 45px;
+	background: black;
+	position: absolute;
+	right: 10px;
+	top: 0px;
+	border-radius: 50%;
+	border: 1px solid black;
+}
+
+#faq button img {
+	width: 20px;
+	height: 20px;
+}
+
+#faq #window {
+	text-align: center;
+	overflow-x:hidden;
+}
+
+#faq #window h1 {
+	margin: 0;
+	padding: 0;
+	margin-top: 10px;
+	font-size: 60px;
+	color: black;
+}
+
+#faq #window .line_up {
+	border-top: 1px dashed black;
+}
+
+#faq #window .line_down {
+	border-bottom: 1px dashed black;
+}
+
+#faq #window p.ask {
+	padding-top: 10px;
+	margin: 10px;
+	font-size: 26px;
+	text-align: center;
+	font-weight: bold;
+}
+
+#faq #window p.nask {
+	text-align: left;
+}
+
+#faq #window .f_answer {
+	padding-bottom: 10px;
+}
+
+#faq #window p.example {
+	font-weight: bold;
+}
+
+#faq #window h2 {
+	font-weight: 100;
+}
+
+#faq .gif {
+	width: 500px;
+}
+
+#faq #window p.answer {
+	margin: 0px 10px;
+	font-size: 18px;
+	text-align: left;
+	font-weight: 100;
+}
+
+
 header {
 	display: none;
 }
@@ -185,7 +301,7 @@ header h1, #end h1 {
 }
 
 
-#game button {
+#game button, #game button:active {
 	margin: 30px auto;
 	background: black;
 	color: #fff;
@@ -210,7 +326,7 @@ header h1, #end h1 {
 	width: 50px;
 }
 
-#game button.know {
+#game button.know, #game button.know:active {
 	background: none;
 	color: black;
 	margin: 0px 10px;
@@ -241,7 +357,6 @@ header h1, #end h1 {
 	left: 50%;
 	margin: -175px 0 0 -175px;
 }
-
 
 
 
