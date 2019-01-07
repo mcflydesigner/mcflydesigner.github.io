@@ -24,14 +24,31 @@
 	<section id="dict">
 		<p>Select the dictionary:</p>
 		<div class="block-th">
-			<button onclick='select_dictionary("first");'>First</button>
-			<button onclick='select_dictionary("second");'>Second</button>
-			<button onclick='select_dictionary("third");'>Third</button>
-		</div>
-		<div class="block-th">
-			<button onclick='select_dictionary("fourth");'>Fourth</button>
-			<button onclick='select_dictionary("fifth");'>Fifth</button>
-			<button onclick='select_dictionary("sixth");'>Sixth</button>
+			<div class="dictionary">
+				<img src="img/first_dictionary.jpg" alt="image">
+				<div class="data">
+					<button onclick='select_dictionary("100 basic verbs");'>100 basic verbs</button>
+					<p>This dictionary has 100 basic verbs.</p>
+				</div>
+			</div>
+			
+			<!--
+			<div class="dictionary">
+				<img src="img/first_dictionary.jpg" alt="image">
+				<div class="data">
+					<button onclick='select_dictionary("first");'>100 basic verbs</button>
+					<p>This dictionary has 100 basic verbs.</p>
+				</div>
+			</div>
+
+			<div class="dictionary">
+				<img src="img/first_dictionary.jpg" alt="image">
+				<div class="data">
+					<button onclick='select_dictionary("first");'>100 basic verbs</button>
+					<p>This dictionary has 100 basic verbs.</p>				
+				</div>
+			</div>
+		-->
 		</div>
 	</section>
 	<!-- End Dictionaries section -->
@@ -53,9 +70,10 @@
 				<p id="pfs">(noun)</p>
 				<form onsubmit="return false;" autocomplete="off">
 					<input type="text" id="us_answer">
-					<button onclick="select_handler();">check</button>
-					<p id="counter">1/6</p>
 				</form>
+				<button class="know" onclick="know_word();">know</button>
+				<button onclick="select_handler();">check</button>
+				<p id="counter">1/6</p>
 				<div class="icons">
 					<a href="#" id="lingvo" target="_blank"><img src="img/lingvo.jpg" alt="image lingvo"></a>
 					<a href="#" id="forvo" target="_blank"><img src="img/forvo.jpg" alt="image forvo"></a>
@@ -65,9 +83,30 @@
 		</div>
 	</section>
 	<!-- End Main game with words -->
+	
+	<!-- Result of the game section -->
+	<section id="end">
+		<h1>Thank you!</h1>
+		<p>Keep it up!</p>
+		<p id="end_text">You have successfully completed the task </p>
+		<a href="https://mcflydesigner.github.io">Go to main page</a>
+	</section>
+	<!-- End Result of the game section -->
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script type="text/javascript">
+		addEventListener("keydown", function(event) {
+			switch(event.keyCode) {
+				case 13:
+				if(gameWork) select_handler();
+				break;
+
+				case 16:
+				if(gameWork) know_word();
+				break;
+			}
+
+		});
 		//We get all words from a dictionary
 		//Dictionary is a JSON file
 		var jsonFile = new XMLHttpRequest();
@@ -79,11 +118,16 @@
 		  		//alert(jsonFile.responseText);
 		  		set_data_er(jsonFile.responseText);
 		  		set_data_re(jsonFile.responseText);
+		  	}
 		  }
-		}
 
-		var counter = -1; //Word position
 		var game = -1; //R -> E or E -> R
+		var currDict = ""; //User dictionary
+		var gameWork = false; //If the user is in the game, he can press 'enter' and 'shift' in the game
+		var countword = 9; //Position in the word list
+		var position = 1; //User have already known words
+		var allelem = 0; //All words + words where an user makes mistakes 
+		var beforeend = false; //Preparing for the end of the game
 
 		//R -> E
 		var rstart = [];
@@ -100,17 +144,20 @@
 		//View all dictionaries for user
 		function select_dictionary(dictionary) {
 			switch(dictionary) {
-				case "first":
-					window.url += "first.json";
-					break;
+				case "100 basic verbs":
+				currDict = "100 basic verbs";
+				window.url += "100_verbs.json";
+				break;
 
 				case "second":
-					window.url += "second.json";
-					break;
+				currDict = "second";
+				window.url += "second.json";
+				break;
 
 				default:
-					alert("Словарика еще нет :)");
-					break;
+				currDict = "none";
+				alert("Словарика еще нет :)");
+				break;
 			}
 
 			jsonFile.open("GET",url,true);
@@ -151,41 +198,47 @@
 			data = JSON.parse(datajson);
 
 			for(var i = 0; i < data.words.length; i++) {
-				window.ewords.push(data.words[i][1][0]);
 				window.estart.push(data.words[i][1][0]);
 				ecoll.set(data.words[i][1][0], data.words[i][0]);
 				var pofs = data.words[i][2];
+				console.log(pofs);
 				switch(pofs) {
 					case "verb":
-						pofs = ["гл."];
-						break;
+					pofs = ["гл."];
+					break;
 
 					case "noun":
-						pofs = ["сущ."];
-						break;
+					pofs = ["сущ."];
+					break;
 
 					case "adj.":
-						pofs = ["прил."];
-						break;
+					pofs = ["прил."];
+					break;
 
 					case "adv.":
-						pofs = ["нар."];
-						break;
+					pofs = ["нар."];
+					break;
 
 					case "num.":
-						pofs = ["чис."];
-						break;
+					pofs = ["чис."];
+					break;
 
 					case "phrase":
-						pofs = ["фраза"];
-						break;
+					pofs = ["фраза"];
+					break;
 
 					default:
-						pofs = ["не опр."];
-						break;
+					pofs = ["не опр."];
+					break;
 				}
 				epfs.set(data.words[i][1][0], pofs);
 			}
+
+			//Only ten words are in the list
+			if(estart.length >= 10) window.ewords = window.estart.slice(0, 10);
+			else window.ewords = window.estart.slice(0, estart.length);
+
+			allelem = estart.length;
 		}
 
 		//Start game
@@ -202,17 +255,19 @@
 
 		//Button "check"
 		function game_handle_re() {
-			var right_answer = ecoll.get(ewords[counter]);
+			var right_answer = ecoll.get(ewords[0]);
 			var flag = false;
 
 			if(document.getElementById("us_answer").value.toLowerCase().trim() == right_answer.toLowerCase()) {
+				flag = true;
+				ewords.push(ewords[0]);
+				ewords.shift();
 				document.getElementById("us_answer").style.background = "#57CE79";
 				document.getElementById("us_answer").style.border = "1px solid #57CE79";
 				document.getElementById("us_answer").style.color = "#fff";
 
-				flag = true;
+
 				setTimeout(function () {
-					counter++;
 					set_word_re();
 				}, 1500);
 			}
@@ -220,14 +275,17 @@
 			if(!flag) {
 					//alert("false");
 					//handle mistake
-					ewords.push(ewords[counter]);
-					document.getElementById("us_answer").value = ecoll.get(ewords[counter]);
+					document.getElementById("us_answer").value = ecoll.get(ewords[0]);
 					document.getElementById("us_answer").style.background = "#D63C3C";
 					document.getElementById("us_answer").style.border = "1px solid #D63C3C";
 					document.getElementById("us_answer").style.color = "#fff";
 
+					ewords.push(ewords[0]);
+					ewords.push(ewords[0]);
+					allelem += 1;
+					ewords.shift();
+
 					setTimeout(function () {
-						counter++;
 						set_word_re();
 					}, 2000);
 				} 
@@ -236,26 +294,52 @@
 		//Change the word
 		function set_word_re() {
 				//Restart game
-				if(ewords[counter] == null) {
-					//alert("restart");
-					counter = 0;
-					ewords = estart.slice();
-					ewords.sort(compareRandom);
-				} 
+				gameWork = true;
+				//the end of the list
+				if(beforeend) {
+					document.getElementById("game").style.display = "none";
+					gameWork = false;
+					document.getElementById("end_text").innerHTML = "You have successfully completed the task \"" + currDict + "\"!";
+					$("#end").fadeIn(1000);
+				}
+				ewords.sort(compareRandom);
+				if(position == allelem) {
+					beforeend = true;
+				}
 
-				document.getElementById("lingvo").href = "https://www.lingvolive.com/ru-ru/translate/en-ru/" + ecoll.get(ewords[counter]);
-				document.getElementById("forvo").href = "https://ru.forvo.com/word/" + ecoll.get(ewords[counter]) + "/#en/";
-				document.getElementById("reverso").href = "https://context.reverso.net/перевод/английский-русский/" + ecoll.get(ewords[counter]);
+				document.getElementById("lingvo").href = "https://www.lingvolive.com/ru-ru/translate/en-ru/" + ecoll.get(ewords[0]);
+				document.getElementById("forvo").href = "https://ru.forvo.com/word/" + ecoll.get(ewords[0]) + "/#en/";
+				document.getElementById("reverso").href = "https://context.reverso.net/перевод/английский-русский/" + ecoll.get(ewords[0]);
 
-				document.getElementById("word").innerHTML = ewords[counter];
-				document.getElementById("pfs").innerHTML = "(" + epfs.get(ewords[counter]) + ")";
+				document.getElementById("word").innerHTML = ewords[0];
+				document.getElementById("pfs").innerHTML = "(" + epfs.get(ewords[0]) + ")";
 				document.getElementById("us_answer").style.background = "none";
 				document.getElementById("us_answer").style.border = "1px solid black";
 				document.getElementById("us_answer").style.color = "black";
 				document.getElementById("us_answer").value = "";
-				document.getElementById("counter").innerHTML = (counter + 1) + "/" + ewords.length;
+				document.getElementById("counter").innerHTML = position + "/" + allelem;
 			}
 
+			//Button "know"
+			function know_word() {
+				if(game == 1) {
+					rwords.shift();
+					position++;
+					if(rstart[countword + 1] != null && rwords.length < 10) {
+						countword++;
+						rwords.push(rstart[countword]);
+					}
+					set_word_er();
+				} else {
+					ewords.shift();
+					position++;
+					if(estart[countword + 1] != null && ewords.length < 10) {
+						countword++;
+						ewords.push(estart[countword]);
+					}
+					set_word_re();
+				}
+			}
 
 
 
@@ -268,11 +352,16 @@
 			data = JSON.parse(datajson);
 
 			for(var i = 0; i < data.words.length; i++) {
-				window.rwords.push(data.words[i][0]);
 				window.rstart.push(data.words[i][0]);
 				rcoll.set(data.words[i][0], data.words[i][1]);
 				rpfs.set(data.words[i][0], data.words[i][2]);
 			}
+
+			//Only ten words are in the list
+			if(rstart.length >= 10) window.rwords = window.rstart.slice(0, 10);
+			else window.rwords = window.rstart.slice(0, rstart.length);
+
+			allelem = rstart.length;
 		}
 
 		//Start game
@@ -287,20 +376,20 @@
 
 		//Button "check"
 		function game_handle_er() {
-			var right_answers = rcoll.get(rwords[counter]);
+			var right_answers = rcoll.get(rwords[0]);
 			var flag = false;
 
 			for(var i = 0; i < right_answers.length; i++) {
 				if(document.getElementById("us_answer").value.toLowerCase().trim() == right_answers[i].toLowerCase()) {
-
 					flag = true;
+					rwords.push(rwords[0]);
+					rwords.shift();
 
 					document.getElementById("us_answer").style.background = "#57CE79";
 					document.getElementById("us_answer").style.border = "1px solid #57CE79";
 					document.getElementById("us_answer").style.color = "#fff";
 
 					setTimeout(function () {
-						counter++;
 						set_word_er();
 					}, 1500);
 
@@ -311,14 +400,17 @@
 			if(!flag) {
 					//alert("false");
 					//handle a mistake
-					rwords.push(rwords[counter]);
-					document.getElementById("us_answer").value = rcoll.get(rwords[counter]).join(",");
+					document.getElementById("us_answer").value = rcoll.get(rwords[0]).join(",");
 					document.getElementById("us_answer").style.background = "#D63C3C";
 					document.getElementById("us_answer").style.border = "1px solid #D63C3C";
 					document.getElementById("us_answer").style.color = "#fff";
 
+					rwords.push(rwords[0]);
+					rwords.push(rwords[0]);
+					allelem += 1;
+					rwords.shift();
+
 					setTimeout(function () {
-						counter++;
 						set_word_er();
 					}, 2000);
 				} 
@@ -326,25 +418,30 @@
 
 			//Change the word
 			function set_word_er() {
-				//Restart game
-				if(rwords[counter] == null) {
-					//alert("restart");
-					counter = 0;
-					rwords = rstart.slice();
-					rwords.sort(compareRandom);
-				} 
+				gameWork = true;
+				//the end of the list
+				if(beforeend) {
+					document.getElementById("game").style.display = "none";
+					gameWork = false;
+					document.getElementById("end_text").innerHTML = "You have successfully completed the task \"" + currDict + "\"!";
+					$("#end").fadeIn(1000);
+				}
+				rwords.sort(compareRandom);
+				if(position == allelem) {
+					beforeend = true;
+				}
 
-				document.getElementById("lingvo").href = "https://www.lingvolive.com/ru-ru/translate/en-ru/" + rwords[counter];
-				document.getElementById("forvo").href = "https://ru.forvo.com/word/" + rwords[counter] + "/#en/";
-				document.getElementById("reverso").href = "https://context.reverso.net/перевод/английский-русский/" + rwords[counter];
+				document.getElementById("lingvo").href = "https://www.lingvolive.com/ru-ru/translate/en-ru/" + rwords[0];
+				document.getElementById("forvo").href = "https://ru.forvo.com/word/" + rwords[0] + "/#en/";
+				document.getElementById("reverso").href = "https://context.reverso.net/перевод/английский-русский/" + rwords[0];
 
-				document.getElementById("word").innerHTML = rwords[counter];
-				document.getElementById("pfs").innerHTML = "(" + rpfs.get(rwords[counter]) + ")";
+				document.getElementById("word").innerHTML = rwords[0];
+				document.getElementById("pfs").innerHTML = "(" + rpfs.get(rwords[0]) + ")";
 				document.getElementById("us_answer").style.background = "none";
 				document.getElementById("us_answer").style.border = "1px solid black";
 				document.getElementById("us_answer").style.color = "black";
 				document.getElementById("us_answer").value = "";
-				document.getElementById("counter").innerHTML = (counter + 1) + "/" + rwords.length;
+				document.getElementById("counter").innerHTML = position + "/" + allelem;
 			}
 
 
