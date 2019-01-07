@@ -8,14 +8,19 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+	<!-- Main block -->
 	<header id="header">
 		<h1>Learn new words!</h1>
 	</header>
-
+	<!-- End Main block -->
+	
+	<!-- Button start -->
 	<section id="main">
 		<button onclick="view_dictionaries()">Start</button>	
 	</section>
-
+	<!-- End Button start -->
+	
+	<!-- Dictionaries section -->
 	<section id="dict">
 		<p>Select the dictionary:</p>
 		<div class="block-th">
@@ -29,13 +34,17 @@
 			<button onclick='select_dictionary("sixth");'>Sixth</button>
 		</div>
 	</section>
-
+	<!-- End Dictionaries section -->
+	
+	<!-- Mode section -->
 	<section id="select_game">
 		<p>Select the mode:</p>
 		<button onclick="start_game_er()">En -> Ru</button>	
 		<button onclick="start_game_re()">Ru -> En</button>	
 	</section>
-
+	<!-- End Mode section -->
+	
+	<!-- Main game with words -->
 	<section id="game">
 		<div class="parent">
 			<div class="block">
@@ -55,12 +64,16 @@
 			</div>
 		</div>
 	</section>
+	<!-- End Main game with words -->
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script type="text/javascript">
+		//We get all words from a dictionary
+		//Dictionary is a JSON file
 		var jsonFile = new XMLHttpRequest();
 		var url = "https://mcflydesigner.github.io/words/";
 
+		//Initialize all words from JSON file
 		jsonFile.onreadystatechange = function() {
 			if (jsonFile.readyState == 4 && jsonFile.status == 200) {
 		  		//alert(jsonFile.responseText);
@@ -69,8 +82,8 @@
 		  }
 		}
 
-		var counter = -1;
-		var game = -1;
+		var counter = -1; //Word position
+		var game = -1; //R -> E or E -> R
 
 		//R -> E
 		var rstart = [];
@@ -84,6 +97,7 @@
 		let ecoll = new Map();
 		let epfs = new Map();
 
+		//View all dictionaries for user
 		function select_dictionary(dictionary) {
 			switch(dictionary) {
 				case "first":
@@ -129,11 +143,10 @@
 
 
 
-
-
 		//=============================================================
-		// 										Russian -> English
+		//Russian -> English
 		//=============================================================
+		//Initialize all data from JSON file
 		function set_data_re(datajson) {
 			data = JSON.parse(datajson);
 
@@ -142,9 +155,35 @@
 				window.estart.push(data.words[i][1][0]);
 				ecoll.set(data.words[i][1][0], data.words[i][0]);
 				var pofs = data.words[i][2];
-				if(pofs == "verb") pofs = ["гл."];
-				else if(pofs == "noun") pofs = ["сущ."];
-				else pofs = ["прил."];
+				switch(pofs) {
+					case "verb":
+						pofs = ["гл."];
+						break;
+
+					case "noun":
+						pofs = ["сущ."];
+						break;
+
+					case "adj.":
+						pofs = ["прил."];
+						break;
+
+					case "adv.":
+						pofs = ["нар."];
+						break;
+
+					case "num.":
+						pofs = ["чис."];
+						break;
+
+					case "phrase":
+						pofs = ["фраза"];
+						break;
+
+					default:
+						pofs = ["не опр."];
+						break;
+				}
 				epfs.set(data.words[i][1][0], pofs);
 			}
 		}
@@ -161,9 +200,8 @@
 			set_word_re();
 		}
 
-		//Button "next"
+		//Button "check"
 		function game_handle_re() {
-			//handle mistakes
 			var right_answer = ecoll.get(ewords[counter]);
 			var flag = false;
 
@@ -181,6 +219,7 @@
 
 			if(!flag) {
 					//alert("false");
+					//handle mistake
 					ewords.push(ewords[counter]);
 					document.getElementById("us_answer").value = ecoll.get(ewords[counter]);
 					document.getElementById("us_answer").style.background = "#D63C3C";
@@ -220,10 +259,8 @@
 
 
 
-
-
 		//=============================================================
-		//										Enlgish -> Russian
+		//Enlgish -> Russian
 		//=============================================================
 		//Initialize all data from JSON file
 		function set_data_er(datajson) {
@@ -248,9 +285,8 @@
 		}
 
 
-		//Button "next"
+		//Button "check"
 		function game_handle_er() {
-			//handle mistakes
 			var right_answers = rcoll.get(rwords[counter]);
 			var flag = false;
 
@@ -274,6 +310,7 @@
 
 			if(!flag) {
 					//alert("false");
+					//handle a mistake
 					rwords.push(rwords[counter]);
 					document.getElementById("us_answer").value = rcoll.get(rwords[counter]).join(",");
 					document.getElementById("us_answer").style.background = "#D63C3C";
@@ -309,10 +346,6 @@
 				document.getElementById("us_answer").value = "";
 				document.getElementById("counter").innerHTML = (counter + 1) + "/" + rwords.length;
 			}
-
-
-
-
 
 
 			//Animation appear
