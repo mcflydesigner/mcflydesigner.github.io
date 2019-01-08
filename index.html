@@ -34,6 +34,7 @@
 				<p class="example">Example(GIF):</p>
 				<img class="gif" src="img/information.gif" alt="GIF image example">
 				<h2>Thank you! Have a nice game :)</h2>
+				<button class="close">Close</button>
 			</div>
 		</div>
 	</section>
@@ -352,6 +353,9 @@
 					beforeend = true;
 				}
 
+				document.getElementById("us_answer").focus();
+    		document.getElementById("us_answer").click();
+
 				document.getElementById("lingvo").href = "https://www.lingvolive.com/ru-ru/translate/en-ru/" + ecoll.get(ewords[0]);
 				document.getElementById("forvo").href = "https://ru.forvo.com/word/" + ecoll.get(ewords[0]) + "/#en/";
 				document.getElementById("reverso").href = "https://context.reverso.net/перевод/английский-русский/" + ecoll.get(ewords[0]);
@@ -489,6 +493,9 @@
 				if(position == allelem) {
 					beforeend = true;
 				}
+
+				document.getElementById("us_answer").focus();
+    		document.getElementById("us_answer").click();
 
 				document.getElementById("lingvo").href = "https://www.lingvolive.com/ru-ru/translate/en-ru/" + rwords[0];
 				document.getElementById("forvo").href = "https://ru.forvo.com/word/" + rwords[0] + "/#en/";
