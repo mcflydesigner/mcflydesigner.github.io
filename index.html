@@ -57,22 +57,22 @@
 		<p>Select the dictionary:</p>
 		<div class="block-th">
 			<div class="dictionary">
-				<img src="img/first_dictionary.jpg" alt="image">
+				<img src="img/100_basic_verbs.jpg" id="img_dict_100verbs" alt="image">
 				<div class="data">
 					<button onclick='select_dictionary("100 basic verbs");'>100 basic verbs</button>
 					<p>This dictionary has 100 basic verbs.</p>
 				</div>
 			</div>
 			
-			<!--
 			<div class="dictionary">
-				<img src="img/first_dictionary.jpg" alt="image">
+				<img src="img/100_basic_adj.jpg" id="img_dict_100adj" alt="image">
 				<div class="data">
-					<button onclick='select_dictionary("first");'>100 basic verbs</button>
-					<p>This dictionary has 100 basic verbs.</p>
+					<button onclick='select_dictionary("100 basic adjectives");'>100 basic adjectives</button>
+					<p>This dictionary has 100 basic adjectives.</p>
 				</div>
 			</div>
 
+			<!--
 			<div class="dictionary">
 				<img src="img/first_dictionary.jpg" alt="image">
 				<div class="data">
@@ -119,6 +119,7 @@
 <!-- Result of the game section -->
 <section id="end">
 	<h1>Thank you!</h1>
+	<img src="#" id="img_dictionary" alt="image">
 	<p>Keep it up!</p>
 	<p id="end_text">You have successfully completed the task </p>
 	<a href="https://mcflydesigner.github.io">Go to main page</a>
@@ -159,6 +160,7 @@
 		var position = 1; //User have already known words
 		var allelem = 0; //All words + words where an user makes mistakes 
 		var beforeend = false; //Preparing for the end of the game
+		var imgend = ""; //If an user finishes the task, he will see it on last page
 
 		//R -> E
 		var rstart = [];
@@ -176,13 +178,15 @@
 		function select_dictionary(dictionary) {
 			switch(dictionary) {
 				case "100 basic verbs":
-				currDict = "100 basic verbs";
-				window.url += "100_verbs.json";
-				break;
+					currDict = "100 basic verbs";
+					window.url += "100_verbs.json";
+					window.imgend = document.getElementById("img_dict_100verbs").getAttribute('src');
+					break;
 
-				case "second":
-				currDict = "second";
-				window.url += "second.json";
+				case "100 basic adjectives":
+				currDict = "100 basic adjectives";
+				window.url += "100_adjectives.json";
+				window.imgend = document.getElementById("img_dict_100adj").getAttribute('src');
 				break;
 
 				default:
@@ -280,6 +284,8 @@
 				epfs.set(data.words[i][1][0], pofs);
 			}
 
+			estart.sort(compareRandom);
+
 			//Only ten words are in the list
 			if(estart.length >= 10) window.ewords = window.estart.slice(0, 10);
 			else window.ewords = window.estart.slice(0, estart.length);
@@ -345,8 +351,13 @@
 				if(beforeend) {
 					document.getElementById("game").style.display = "none";
 					gameWork = false;
+					document.getElementById("img_dictionary").src = "https://mcflydesigner.github.io/" + imgend;
+					document.body.style.background = "#8E2DE2"; 
+					document.body.style.background = "webkit-linear-gradient(to right, #4A00E0, #8E2DE2)";
+					document.body.style.background = "linear-gradient(to right, #4A00E0, #8E2DE2)"; 
 					document.getElementById("end_text").innerHTML = "You have successfully completed the task \"" + currDict + "\"!";
 					$("#end").fadeIn(1000);
+					$("#img_dictionary").fadeIn(2000);
 				}
 				ewords.sort(compareRandom);
 				if(position == allelem) {
@@ -400,7 +411,6 @@
 						countword++;
 						ewords.push(estart[countword]);
 					}
-					set_word_re();
 				}
 			}
 
@@ -419,6 +429,8 @@
 				rcoll.set(data.words[i][0], data.words[i][1]);
 				rpfs.set(data.words[i][0], data.words[i][2]);
 			}
+
+			rstart.sort(compareRandom);
 
 			//Only ten words are in the list
 			if(rstart.length >= 10) window.rwords = window.rstart.slice(0, 10);
@@ -486,8 +498,13 @@
 				if(beforeend) {
 					document.getElementById("game").style.display = "none";
 					gameWork = false;
+					document.getElementById("img_dictionary").src = "https://mcflydesigner.github.io/" + imgend;
+					document.body.style.background = "#8E2DE2"; 
+					document.body.style.background = "webkit-linear-gradient(to right, #4A00E0, #8E2DE2)";
+					document.body.style.background = "linear-gradient(to right, #4A00E0, #8E2DE2)"; 
 					document.getElementById("end_text").innerHTML = "You have successfully completed the task \"" + currDict + "\"!";
 					$("#end").fadeIn(1000);
+					$("#img_dictionary").fadeIn(2000);
 				}
 				rwords.sort(compareRandom);
 				if(position == allelem) {
