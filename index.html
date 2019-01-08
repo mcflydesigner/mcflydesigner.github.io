@@ -29,6 +29,10 @@
 				<p class="answer">If you know word, you should press "know". Otherwise you should press "check" and then the program checks it.If you're right, your input will be green. And your input will be red, if you aren't right.</p>
 				<p class="example">Example(GIF):</p>
 				<img class="gif" src="img/game.gif" alt="GIF image example">
+				<p class="ask nask">4.How to get more information about word?</p>
+				<p class="answer">In the game you have 3 buttons below. Do you want to get more translations? Click on the first button. Do you want to listen to word pronunciation? Click on the second button. And if you want to get example sentences with the word, you should click on the third button.</p>
+				<p class="example">Example(GIF):</p>
+				<img class="gif" src="img/information.gif" alt="GIF image example">
 				<h2>Thank you! Have a nice game :)</h2>
 			</div>
 		</div>
@@ -122,18 +126,17 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script type="text/javascript">
-	addEventListener("keydown", function(event) {
-		switch(event.keyCode) {
-			case 13:
-			if(gameWork) select_handler();
-			break;
+		addEventListener("keydown", function(event) {
+			switch(event.keyCode) {
+				case 13:
+				if(gameWork) select_handler();
+				break;
 
-			case 16:
-			if(gameWork) know_word();
-			break;
-		}
-
-	});
+				case 16:
+				if(gameWork) know_word();
+				break;
+			}
+		});
 		//We get all words from a dictionary
 		//Dictionary is a JSON file
 		var jsonFile = new XMLHttpRequest();
@@ -192,9 +195,19 @@
 			view_games();
 		}
 
+		//faq
 		function show(state) {
-			document.getElementById('window').style.display = state;			
-			document.getElementById('wrap').style.display = state;
+			switch(state) {
+				case "block":
+					$("#window").fadeIn(1000);
+					$("#wrap").fadeIn(1000);
+					break;
+
+				case "none":
+					$("#window").fadeOut(1000);
+					$("#wrap").fadeOut(1000);
+					break;
+			}
 		}
 
 		//View all dictionaries for user

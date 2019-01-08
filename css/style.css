@@ -480,6 +480,10 @@ header h1, #end h1 {
 	#dict .dictionary p {
 		max-width: 200px;
 	}
+
+	#faq .gif {
+		width: 400px;
+	}
 }
 
 @media screen and (max-width: 400px) {
@@ -526,6 +530,14 @@ header h1, #end h1 {
 	#end p#end_text {
 		font-size: 28px;
 		max-width: 250px;
+	}
+
+	#faq .gif {
+		width: 300px;
+	}
+
+	#faq img {
+		width: 300px;
 	}
 
 }
