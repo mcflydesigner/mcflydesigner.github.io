@@ -214,6 +214,7 @@ header h1, #end h1 {
 }
 
 #dict .dictionary img {
+	border-radius: 5px;
 	display: inline-block;
 	width: 30%;
 	margin: 0;

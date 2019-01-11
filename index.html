@@ -72,15 +72,13 @@
 				</div>
 			</div>
 
-			<!--
 			<div class="dictionary">
-				<img src="img/first_dictionary.jpg" alt="image">
+				<img src="img/100_basic_nouns.jpg" id="img_dict_100nouns" alt="image">
 				<div class="data">
-					<button onclick='select_dictionary("first");'>100 basic verbs</button>
-					<p>This dictionary has 100 basic verbs.</p>				
+					<button onclick='select_dictionary("100 basic nouns");'>100 basic nouns</button>
+					<p>This dictionary has 100 basic nouns.</p>				
 				</div>
 			</div>
-		-->
 	</div>
 </section>
 <!-- End Dictionaries section -->
@@ -184,9 +182,15 @@
 					break;
 
 				case "100 basic adjectives":
-				currDict = "100 basic adjectives";
-				window.url += "100_adjectives.json";
-				window.imgend = document.getElementById("img_dict_100adj").getAttribute('src');
+					currDict = "100 basic adjectives";
+					window.url += "100_adjectives.json";
+					window.imgend = document.getElementById("img_dict_100adj").getAttribute('src');
+				break;
+
+				case "100 basic nouns":
+					currDict = "100 basic nouns";
+					window.url += "100_nouns.json";
+					window.imgend = document.getElementById("img_dict_100nouns").getAttribute('src');
 				break;
 
 				default:
@@ -251,7 +255,6 @@
 				window.estart.push(data.words[i][1][0]);
 				ecoll.set(data.words[i][1][0], data.words[i][0]);
 				var pofs = data.words[i][2];
-				console.log(pofs);
 				switch(pofs) {
 					case "verb":
 					pofs = ["гл."];
