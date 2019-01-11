@@ -79,6 +79,14 @@
 					<p>This dictionary has 100 basic nouns.</p>				
 				</div>
 			</div>
+
+			<div class="dictionary">
+				<img src="img/everyday_things.jpg" id="img_everyday_things" alt="image">
+				<div class="data">
+					<button onclick='select_dictionary("everyday things");'>Everyday things</button>
+					<p>This dictionary has 136 basic words.</p>				
+				</div>
+			</div>
 	</div>
 </section>
 <!-- End Dictionaries section -->
@@ -191,6 +199,12 @@
 					currDict = "100 basic nouns";
 					window.url += "100_nouns.json";
 					window.imgend = document.getElementById("img_dict_100nouns").getAttribute('src');
+				break;
+
+				case "everyday things":
+					currDict = "Everyday things";
+					window.url += "everyday_things.json";
+					window.imgend = document.getElementById("img_everyday_things").getAttribute('src');
 				break;
 
 				default:
@@ -460,12 +474,14 @@
 			for(var i = 0; i < right_answers.length; i++) {
 				if(document.getElementById("us_answer").value.toLowerCase().trim() == right_answers[i].toLowerCase()) {
 					flag = true;
-					rwords.push(rwords[0]);
-					rwords.shift();
 
+					document.getElementById("us_answer").value = rcoll.get(rwords[0]).join(",");
 					document.getElementById("us_answer").style.background = "#57CE79";
 					document.getElementById("us_answer").style.border = "1px solid #57CE79";
 					document.getElementById("us_answer").style.color = "#fff";
+
+					rwords.push(rwords[0]);
+					rwords.shift();
 
 					setTimeout(function () {
 						set_word_er();
