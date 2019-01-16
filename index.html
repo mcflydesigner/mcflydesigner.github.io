@@ -87,6 +87,13 @@
 					<p>This dictionary has 136 basic words.</p>				
 				</div>
 			</div>
+			<div class="dictionary">
+				<img src="img/business.jpg" id="img_business" alt="image">
+				<div class="data">
+					<button onclick='select_dictionary("business");'>Business</button>
+					<p>This dictionary has 211 basic words about business.</p>				
+				</div>
+			</div>
 	</div>
 </section>
 <!-- End Dictionaries section -->
@@ -207,6 +214,12 @@
 					window.imgend = document.getElementById("img_everyday_things").getAttribute('src');
 				break;
 
+				case "business":
+					currDict = "business";
+					window.url += "business.json";
+					window.imgend = document.getElementById("img_business").getAttribute('src');
+				break;
+
 				default:
 				currDict = "none";
 				alert("Словарика еще нет :)");
@@ -317,6 +330,7 @@
 			document.getElementById("main").style.display = "none";
 			document.getElementById("select_game").style.display = "none";
 			document.getElementById("word").style.fontWeight = "100";
+			$("#faq").fadeOut(1000);
 			$("#game").fadeIn(1000);
 
 			set_word_re();
@@ -461,6 +475,7 @@
 			document.getElementById("header").style.display = "none";
 			document.getElementById("main").style.display = "none";
 			document.getElementById("select_game").style.display = "none";
+			$("#faq").fadeOut(1000);
 			$("#game").fadeIn(1000);
 			set_word_er();
 		}
