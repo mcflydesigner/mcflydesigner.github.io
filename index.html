@@ -87,11 +87,20 @@
 					<p>This dictionary has 136 basic words.</p>				
 				</div>
 			</div>
+
 			<div class="dictionary">
 				<img src="img/business.jpg" id="img_business" alt="image">
 				<div class="data">
 					<button onclick='select_dictionary("business");'>Business</button>
 					<p>This dictionary has 211 basic words about business.</p>				
+				</div>
+			</div>
+
+			<div class="dictionary">
+				<img src="img/body.jpg" id="img_body" alt="image">
+				<div class="data">
+					<button onclick='select_dictionary("body");'>Human body parts</button>
+					<p>This dictionary has 48 basic words about human body parts.</p>				
 				</div>
 			</div>
 	</div>
@@ -141,6 +150,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script type="text/javascript">
+		//Input keys from the user's keyboard
 		addEventListener("keydown", function(event) {
 			switch(event.keyCode) {
 				case 13:
@@ -152,6 +162,7 @@
 				break;
 			}
 		});
+
 		//We get all words from a dictionary
 		//Dictionary is a JSON file
 		var jsonFile = new XMLHttpRequest();
@@ -220,9 +231,15 @@
 					window.imgend = document.getElementById("img_business").getAttribute('src');
 				break;
 
+				case "body":
+					currDict = "human body parts";
+					window.url += "body.json";
+					window.imgend = document.getElementById("img_body").getAttribute('src');
+				break;
+
 				default:
-				currDict = "none";
-				alert("Словарика еще нет :)");
+					currDict = "none";
+					alert("Словарика еще нет :)");
 				break;
 			}
 
@@ -237,12 +254,12 @@
 				case "block":
 					$("#window").fadeIn(1000);
 					$("#wrap").fadeIn(1000);
-					break;
+				break;
 
 				case "none":
 					$("#window").fadeOut(1000);
 					$("#wrap").fadeOut(1000);
-					break;
+				break;
 			}
 		}
 
@@ -345,6 +362,7 @@
 				flag = true;
 				ewords.push(ewords[0]);
 				ewords.shift();
+				ewords.sort(compareRandom);
 				document.getElementById("us_answer").style.background = "#57CE79";
 				document.getElementById("us_answer").style.border = "1px solid #57CE79";
 				document.getElementById("us_answer").style.color = "#fff";
@@ -364,9 +382,7 @@
 					document.getElementById("us_answer").style.color = "#fff";
 
 					ewords.push(ewords[0]);
-					ewords.push(ewords[0]);
 					allelem += 1;
-					ewords.shift();
 
 					setTimeout(function () {
 						set_word_re();
@@ -390,7 +406,7 @@
 					$("#end").fadeIn(1000);
 					$("#img_dictionary").fadeIn(2000);
 				}
-				ewords.sort(compareRandom);
+
 				if(position == allelem) {
 					beforeend = true;
 				}
@@ -422,6 +438,7 @@
 						set_word_er();
 					}, 1500);
 					rwords.shift();
+					rwords.sort(compareRandom);
 					position++;
 					if(rstart[countword + 1] != null && rwords.length < 10) {
 						countword++;
@@ -438,6 +455,8 @@
 					}, 1500);
 					ewords.shift();
 					position++;
+
+					ewords.sort(compareRandom);
 					if(estart[countword + 1] != null && ewords.length < 10) {
 						countword++;
 						ewords.push(estart[countword]);
@@ -497,6 +516,7 @@
 
 					rwords.push(rwords[0]);
 					rwords.shift();
+					rwords.sort(compareRandom);
 
 					setTimeout(function () {
 						set_word_er();
@@ -515,9 +535,7 @@
 					document.getElementById("us_answer").style.color = "#fff";
 
 					rwords.push(rwords[0]);
-					rwords.push(rwords[0]);
 					allelem += 1;
-					rwords.shift();
 
 					setTimeout(function () {
 						set_word_er();
@@ -540,7 +558,7 @@
 					$("#end").fadeIn(1000);
 					$("#img_dictionary").fadeIn(2000);
 				}
-				rwords.sort(compareRandom);
+
 				if(position == allelem) {
 					beforeend = true;
 				}
@@ -562,7 +580,7 @@
 			}
 
 
-			//Animation appear
+			//Animation appear the starts elements
 			$("#header").fadeIn(800);
 			$("#main").fadeIn(1000);
 		</script>
