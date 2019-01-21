@@ -57,11 +57,15 @@ function select_dictionary(dictionary) {
 			window.imgend = document.getElementById("img_body").getAttribute('src');
 		break;
 
-		
+		case "appearance":
+			currDict = "appearance and character";
+			window.url += "appearance.json";
+			window.imgend = document.getElementById("img_appearance").getAttribute('src');
+		break;
 
 		default:
-		currDict = "none";
-		alert("Словарика еще нет :)");
+			currDict = "none";
+			alert("Словарика еще нет :)");
 		break;
 	}
 

@@ -266,6 +266,18 @@ header h1, #end h1 {
 	word-wrap: normal;
 }
 
+#game button.color {
+	display: inline-block;
+	cursor: pointer;
+	background: none;
+	font-size: 18px;
+	border: none;
+	color: black;
+	margin: 0px;
+	width: 50px;
+	padding: 0px;
+}
+
 #game #task {
 	font-size: 28px;
 	font-weight: 100;
@@ -359,6 +371,10 @@ header h1, #end h1 {
 	background: black;
 	color: #fff;
 	transition: 1s background;
+}
+
+#game .icons a:hover {
+	background: 0.5s #333;
 }
 
 .parent {

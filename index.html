@@ -71,7 +71,7 @@
 
 	<!-- Main game with words -->
 	<section id="game">
-		<div class="parent">
+		<div class="parent" id="parent_bg">
 			<div class="block">
 				<p id="task">Translate this word:</p>
 				<p id="word">word</p>
@@ -108,13 +108,13 @@
 		function show(state) {
 			switch(state) {
 				case "block":
-				$("#window").fadeIn(1000);
-				$("#wrap").fadeIn(1000);
+					$("#window").fadeIn(1000);
+					$("#wrap").fadeIn(1000);
 				break;
 
 				case "none":
-				$("#window").fadeOut(1000);
-				$("#wrap").fadeOut(1000);
+					$("#window").fadeOut(1000);
+					$("#wrap").fadeOut(1000);
 				break;
 			}
 		}
