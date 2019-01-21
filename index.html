@@ -8,7 +8,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-
 	<!-- FAQ section -->
 	<section id="faq">
 		<button onclick="show('block')"><img src="img/faq.png" alt="faq icon"></button>
@@ -55,210 +54,67 @@
 	<!-- Dictionaries section -->
 	<section id="dict">
 		<p>Select the dictionary:</p>
-		<div class="block-th">
-			<div class="dictionary">
-				<img src="img/100_basic_verbs.jpg" id="img_dict_100verbs" alt="image">
-				<div class="data">
-					<button onclick='select_dictionary("100 basic verbs");'>100 basic verbs</button>
-					<p>This dictionary has 100 basic verbs.</p>
-				</div>
-			</div>
-			
-			<div class="dictionary">
-				<img src="img/100_basic_adj.jpg" id="img_dict_100adj" alt="image">
-				<div class="data">
-					<button onclick='select_dictionary("100 basic adjectives");'>100 basic adjectives</button>
-					<p>This dictionary has 100 basic adjectives.</p>
-				</div>
-			</div>
+		<!-- Import data from the HTML file -->
+		<div class="block-th" id="dict_block">
 
-			<div class="dictionary">
-				<img src="img/100_basic_nouns.jpg" id="img_dict_100nouns" alt="image">
-				<div class="data">
-					<button onclick='select_dictionary("100 basic nouns");'>100 basic nouns</button>
-					<p>This dictionary has 100 basic nouns.</p>				
+		</div>
+	</section>
+	<!-- End Dictionaries section -->
+
+	<!-- Mode section -->
+	<section id="select_game">
+		<p>Select the mode:</p>
+		<button onclick="start_game_er()">En -> Ru</button>	
+		<button onclick="start_game_re()">Ru -> En</button>	
+	</section>
+	<!-- End Mode section -->
+
+	<!-- Main game with words -->
+	<section id="game">
+		<div class="parent">
+			<div class="block">
+				<p id="task">Translate this word:</p>
+				<p id="word">word</p>
+				<p id="pfs">(noun)</p>
+				<form onsubmit="return false;" autocomplete="off">
+					<input type="text" id="us_answer">
+				</form>
+				<button class="know" onclick="know_word();">know</button>
+				<button onclick="select_handler();">check</button>
+				<p id="counter">1/6</p>
+				<div class="icons">
+					<a href="#" id="lingvo" target="_blank"><img src="img/lingvo.jpg" alt="image lingvo"></a>
+					<a href="#" id="forvo" target="_blank"><img src="img/forvo.jpg" alt="image forvo"></a>
+					<a href="#" id="reverso" target="_blank"><img src="img/reverso.jpg" alt="image reverso"></a>
 				</div>
-			</div>
-
-			<div class="dictionary">
-				<img src="img/everyday_things.jpg" id="img_everyday_things" alt="image">
-				<div class="data">
-					<button onclick='select_dictionary("everyday things");'>Everyday things</button>
-					<p>This dictionary has 136 basic words.</p>				
-				</div>
-			</div>
-
-			<div class="dictionary">
-				<img src="img/business.jpg" id="img_business" alt="image">
-				<div class="data">
-					<button onclick='select_dictionary("business");'>Business</button>
-					<p>This dictionary has 211 basic words about business.</p>				
-				</div>
-			</div>
-
-			<div class="dictionary">
-				<img src="img/body.jpg" id="img_body" alt="image">
-				<div class="data">
-					<button onclick='select_dictionary("body");'>Human body parts</button>
-					<p>This dictionary has 48 basic words about human body parts.</p>				
-				</div>
-			</div>
-	</div>
-</section>
-<!-- End Dictionaries section -->
-
-<!-- Mode section -->
-<section id="select_game">
-	<p>Select the mode:</p>
-	<button onclick="start_game_er()">En -> Ru</button>	
-	<button onclick="start_game_re()">Ru -> En</button>	
-</section>
-<!-- End Mode section -->
-
-<!-- Main game with words -->
-<section id="game">
-	<div class="parent">
-		<div class="block">
-			<p id="task">Translate this word:</p>
-			<p id="word">word</p>
-			<p id="pfs">(noun)</p>
-			<form onsubmit="return false;" autocomplete="off">
-				<input type="text" id="us_answer">
-			</form>
-			<button class="know" onclick="know_word();">know</button>
-			<button onclick="select_handler();">check</button>
-			<p id="counter">1/6</p>
-			<div class="icons">
-				<a href="#" id="lingvo" target="_blank"><img src="img/lingvo.jpg" alt="image lingvo"></a>
-				<a href="#" id="forvo" target="_blank"><img src="img/forvo.jpg" alt="image forvo"></a>
-				<a href="#" id="reverso" target="_blank"><img src="img/reverso.jpg" alt="image reverso"></a>
 			</div>
 		</div>
-	</div>
-</section>
-<!-- End Main game with words -->
+	</section>
+	<!-- End Main game with words -->
 
-<!-- Result of the game section -->
-<section id="end">
-	<h1>Thank you!</h1>
-	<img src="#" id="img_dictionary" alt="image">
-	<p>Keep it up!</p>
-	<p id="end_text">You have successfully completed the task </p>
-	<a href="https://mcflydesigner.github.io">Go to main page</a>
-</section>
-<!-- End Result of the game section -->
+	<!-- Result of the game section -->
+	<section id="end">
+		<h1>Thank you!</h1>
+		<img src="#" id="img_dictionary" alt="image">
+		<p>Keep it up!</p>
+		<p id="end_text">You have successfully completed the task </p>
+		<a href="https://mcflydesigner.github.io">Go to main page</a>
+	</section>
+	<!-- End Result of the game section -->
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script type="text/javascript">
-		//Input keys from the user's keyboard
-		addEventListener("keydown", function(event) {
-			switch(event.keyCode) {
-				case 13:
-				if(gameWork) select_handler();
-				break;
-
-				case 16:
-				if(gameWork) know_word();
-				break;
-			}
-		});
-
-		//We get all words from a dictionary
-		//Dictionary is a JSON file
-		var jsonFile = new XMLHttpRequest();
-		var url = "https://mcflydesigner.github.io/words/";
-
-		//Initialize all words from JSON file
-		jsonFile.onreadystatechange = function() {
-			if (jsonFile.readyState == 4 && jsonFile.status == 200) {
-		  		//alert(jsonFile.responseText);
-		  		set_data_er(jsonFile.responseText);
-		  		set_data_re(jsonFile.responseText);
-		  	}
-		  }
-
-		var game = -1; //R -> E or E -> R
-		var currDict = ""; //User dictionary
-		var gameWork = false; //If the user is in the game, he can press 'enter' and 'shift' in the game
-		var countword = 9; //Position in the word list
-		var position = 1; //User have already known words
-		var allelem = 0; //All words + words where an user makes mistakes 
-		var beforeend = false; //Preparing for the end of the game
-		var imgend = ""; //If an user finishes the task, he will see it on last page
-
-		//R -> E
-		var rstart = [];
-		var rwords = [];
-		let rcoll = new Map();
-		let rpfs = new Map();
-
-		//E -> R
-		var estart = [];
-		var ewords = [];
-		let ecoll = new Map();
-		let epfs = new Map();
-
-		//View all dictionaries for user
-		function select_dictionary(dictionary) {
-			switch(dictionary) {
-				case "100 basic verbs":
-					currDict = "100 basic verbs";
-					window.url += "100_verbs.json";
-					window.imgend = document.getElementById("img_dict_100verbs").getAttribute('src');
-					break;
-
-				case "100 basic adjectives":
-					currDict = "100 basic adjectives";
-					window.url += "100_adjectives.json";
-					window.imgend = document.getElementById("img_dict_100adj").getAttribute('src');
-				break;
-
-				case "100 basic nouns":
-					currDict = "100 basic nouns";
-					window.url += "100_nouns.json";
-					window.imgend = document.getElementById("img_dict_100nouns").getAttribute('src');
-				break;
-
-				case "everyday things":
-					currDict = "Everyday things";
-					window.url += "everyday_things.json";
-					window.imgend = document.getElementById("img_everyday_things").getAttribute('src');
-				break;
-
-				case "business":
-					currDict = "business";
-					window.url += "business.json";
-					window.imgend = document.getElementById("img_business").getAttribute('src');
-				break;
-
-				case "body":
-					currDict = "human body parts";
-					window.url += "body.json";
-					window.imgend = document.getElementById("img_body").getAttribute('src');
-				break;
-
-				default:
-					currDict = "none";
-					alert("Словарика еще нет :)");
-				break;
-			}
-
-			jsonFile.open("GET",url,true);
-			jsonFile.send();
-			view_games();
-		}
-
-		//faq
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		//FAQ block 
 		function show(state) {
 			switch(state) {
 				case "block":
-					$("#window").fadeIn(1000);
-					$("#wrap").fadeIn(1000);
+				$("#window").fadeIn(1000);
+				$("#wrap").fadeIn(1000);
 				break;
 
 				case "none":
-					$("#window").fadeOut(1000);
-					$("#wrap").fadeOut(1000);
+				$("#window").fadeOut(1000);
+				$("#wrap").fadeOut(1000);
 				break;
 			}
 		}
@@ -286,305 +142,16 @@
 			else game_handle_er();
 		}
 
+		//Animation appear the starts elements
+		$("#header").fadeIn(800);
+		$("#main").fadeIn(1000);
 
-
-		//=============================================================
-		//Russian -> English
-		//=============================================================
-		//Initialize all data from JSON file
-		function set_data_re(datajson) {
-			data = JSON.parse(datajson);
-
-			for(var i = 0; i < data.words.length; i++) {
-				window.estart.push(data.words[i][1][0]);
-				ecoll.set(data.words[i][1][0], data.words[i][0]);
-				var pofs = data.words[i][2];
-				switch(pofs) {
-					case "verb":
-					pofs = ["гл."];
-					break;
-
-					case "noun":
-					pofs = ["сущ."];
-					break;
-
-					case "adj.":
-					pofs = ["прил."];
-					break;
-
-					case "adv.":
-					pofs = ["нар."];
-					break;
-
-					case "num.":
-					pofs = ["чис."];
-					break;
-
-					case "phrase":
-					pofs = ["фраза"];
-					break;
-
-					default:
-					pofs = ["не опр."];
-					break;
-				}
-				epfs.set(data.words[i][1][0], pofs);
-			}
-
-			estart.sort(compareRandom);
-
-			//Only ten words are in the list
-			if(estart.length >= 10) window.ewords = window.estart.slice(0, 10);
-			else window.ewords = window.estart.slice(0, estart.length);
-
-			allelem = estart.length;
-		}
-
-		//Start game
-		function start_game_re() {
-			game = 0;
-			document.getElementById("header").style.display = "none";
-			document.getElementById("main").style.display = "none";
-			document.getElementById("select_game").style.display = "none";
-			document.getElementById("word").style.fontWeight = "100";
-			$("#faq").fadeOut(1000);
-			$("#game").fadeIn(1000);
-
-			set_word_re();
-		}
-
-		//Button "check"
-		function game_handle_re() {
-			var right_answer = ecoll.get(ewords[0]);
-			var flag = false;
-
-			if(document.getElementById("us_answer").value.toLowerCase().trim() == right_answer.toLowerCase()) {
-				flag = true;
-				ewords.push(ewords[0]);
-				ewords.shift();
-				ewords.sort(compareRandom);
-				document.getElementById("us_answer").style.background = "#57CE79";
-				document.getElementById("us_answer").style.border = "1px solid #57CE79";
-				document.getElementById("us_answer").style.color = "#fff";
-
-
-				setTimeout(function () {
-					set_word_re();
-				}, 1500);
-			}
-
-			if(!flag) {
-					//alert("false");
-					//handle mistake
-					document.getElementById("us_answer").value = ecoll.get(ewords[0]);
-					document.getElementById("us_answer").style.background = "#D63C3C";
-					document.getElementById("us_answer").style.border = "1px solid #D63C3C";
-					document.getElementById("us_answer").style.color = "#fff";
-
-					ewords.push(ewords[0]);
-					allelem += 1;
-
-					setTimeout(function () {
-						set_word_re();
-					}, 2000);
-				} 
-			}
-
-		//Change the word
-		function set_word_re() {
-				//Restart game
-				gameWork = true;
-				//the end of the list
-				if(beforeend) {
-					document.getElementById("game").style.display = "none";
-					gameWork = false;
-					document.getElementById("img_dictionary").src = "https://mcflydesigner.github.io/" + imgend;
-					document.body.style.background = "#8E2DE2"; 
-					document.body.style.background = "webkit-linear-gradient(to right, #4A00E0, #8E2DE2)";
-					document.body.style.background = "linear-gradient(to right, #4A00E0, #8E2DE2)"; 
-					document.getElementById("end_text").innerHTML = "You have successfully completed the task \"" + currDict + "\"!";
-					$("#end").fadeIn(1000);
-					$("#img_dictionary").fadeIn(2000);
-				}
-
-				if(position == allelem) {
-					beforeend = true;
-				}
-
-				document.getElementById("us_answer").focus();
-    		document.getElementById("us_answer").click();
-
-				document.getElementById("lingvo").href = "https://www.lingvolive.com/ru-ru/translate/en-ru/" + ecoll.get(ewords[0]);
-				document.getElementById("forvo").href = "https://ru.forvo.com/word/" + ecoll.get(ewords[0]) + "/#en/";
-				document.getElementById("reverso").href = "https://context.reverso.net/перевод/английский-русский/" + ecoll.get(ewords[0]);
-
-				document.getElementById("word").innerHTML = ewords[0];
-				document.getElementById("pfs").innerHTML = "(" + epfs.get(ewords[0]) + ")";
-				document.getElementById("us_answer").style.background = "none";
-				document.getElementById("us_answer").style.border = "1px solid black";
-				document.getElementById("us_answer").style.color = "black";
-				document.getElementById("us_answer").value = "";
-				document.getElementById("counter").innerHTML = position + "/" + allelem;
-			}
-
-			//Button "know"
-			function know_word() {
-				if(game == 1) {
-					document.getElementById("us_answer").style.background = "#57CE79";
-					document.getElementById("us_answer").style.border = "1px solid #57CE79";
-					document.getElementById("us_answer").style.color = "#fff";
-					document.getElementById("us_answer").value = rcoll.get(rwords[0]).join(",");
-					setTimeout(function () {
-						set_word_er();
-					}, 1500);
-					rwords.shift();
-					rwords.sort(compareRandom);
-					position++;
-					if(rstart[countword + 1] != null && rwords.length < 10) {
-						countword++;
-						rwords.push(rstart[countword]);
-					}
-				} else {
-					document.getElementById("us_answer").value = ecoll.get(ewords[0]);
-					document.getElementById("us_answer").style.background = "#57CE79";
-					document.getElementById("us_answer").style.border = "1px solid #57CE79";
-					document.getElementById("us_answer").style.color = "#fff";
-
-					setTimeout(function () {
-						set_word_re();
-					}, 1500);
-					ewords.shift();
-					position++;
-
-					ewords.sort(compareRandom);
-					if(estart[countword + 1] != null && ewords.length < 10) {
-						countword++;
-						ewords.push(estart[countword]);
-					}
-				}
-			}
-
-
-
-		//=============================================================
-		//Enlgish -> Russian
-		//=============================================================
-		//Initialize all data from JSON file
-		function set_data_er(datajson) {
-			game = 1;
-			data = JSON.parse(datajson);
-
-			for(var i = 0; i < data.words.length; i++) {
-				window.rstart.push(data.words[i][0]);
-				rcoll.set(data.words[i][0], data.words[i][1]);
-				rpfs.set(data.words[i][0], data.words[i][2]);
-			}
-
-			rstart.sort(compareRandom);
-
-			//Only ten words are in the list
-			if(rstart.length >= 10) window.rwords = window.rstart.slice(0, 10);
-			else window.rwords = window.rstart.slice(0, rstart.length);
-
-			allelem = rstart.length;
-		}
-
-		//Start game
-		function start_game_er() {
-			document.getElementById("header").style.display = "none";
-			document.getElementById("main").style.display = "none";
-			document.getElementById("select_game").style.display = "none";
-			$("#faq").fadeOut(1000);
-			$("#game").fadeIn(1000);
-			set_word_er();
-		}
-
-
-		//Button "check"
-		function game_handle_er() {
-			var right_answers = rcoll.get(rwords[0]);
-			var flag = false;
-
-			for(var i = 0; i < right_answers.length; i++) {
-				if(document.getElementById("us_answer").value.toLowerCase().trim() == right_answers[i].toLowerCase()) {
-					flag = true;
-
-					document.getElementById("us_answer").value = rcoll.get(rwords[0]).join(",");
-					document.getElementById("us_answer").style.background = "#57CE79";
-					document.getElementById("us_answer").style.border = "1px solid #57CE79";
-					document.getElementById("us_answer").style.color = "#fff";
-
-					rwords.push(rwords[0]);
-					rwords.shift();
-					rwords.sort(compareRandom);
-
-					setTimeout(function () {
-						set_word_er();
-					}, 1500);
-
-					break;
-				}
-			}
-
-			if(!flag) {
-					//alert("false");
-					//handle a mistake
-					document.getElementById("us_answer").value = rcoll.get(rwords[0]).join(",");
-					document.getElementById("us_answer").style.background = "#D63C3C";
-					document.getElementById("us_answer").style.border = "1px solid #D63C3C";
-					document.getElementById("us_answer").style.color = "#fff";
-
-					rwords.push(rwords[0]);
-					allelem += 1;
-
-					setTimeout(function () {
-						set_word_er();
-					}, 2000);
-				} 
-			}
-
-			//Change the word
-			function set_word_er() {
-				gameWork = true;
-				//the end of the list
-				if(beforeend) {
-					document.getElementById("game").style.display = "none";
-					gameWork = false;
-					document.getElementById("img_dictionary").src = "https://mcflydesigner.github.io/" + imgend;
-					document.body.style.background = "#8E2DE2"; 
-					document.body.style.background = "webkit-linear-gradient(to right, #4A00E0, #8E2DE2)";
-					document.body.style.background = "linear-gradient(to right, #4A00E0, #8E2DE2)"; 
-					document.getElementById("end_text").innerHTML = "You have successfully completed the task \"" + currDict + "\"!";
-					$("#end").fadeIn(1000);
-					$("#img_dictionary").fadeIn(2000);
-				}
-
-				if(position == allelem) {
-					beforeend = true;
-				}
-
-				document.getElementById("us_answer").focus();
-    		document.getElementById("us_answer").click();
-
-				document.getElementById("lingvo").href = "https://www.lingvolive.com/ru-ru/translate/en-ru/" + rwords[0];
-				document.getElementById("forvo").href = "https://ru.forvo.com/word/" + rwords[0] + "/#en/";
-				document.getElementById("reverso").href = "https://context.reverso.net/перевод/английский-русский/" + rwords[0];
-
-				document.getElementById("word").innerHTML = rwords[0];
-				document.getElementById("pfs").innerHTML = "(" + rpfs.get(rwords[0]) + ")";
-				document.getElementById("us_answer").style.background = "none";
-				document.getElementById("us_answer").style.border = "1px solid black";
-				document.getElementById("us_answer").style.color = "black";
-				document.getElementById("us_answer").value = "";
-				document.getElementById("counter").innerHTML = position + "/" + allelem;
-			}
-
-
-			//Animation appear the starts elements
-			$("#header").fadeIn(800);
-			$("#main").fadeIn(1000);
-		</script>
-	</body>
-	</html>
+		//Get all dictionaries from the HTML file
+		$("#dict_block").load("https://mcflydesigner.github.io/dictionaries/dictionaries.html");
+	</script>
+	<script src="js/game_handle.js"></script>
+	<script src="js/dictionary.js"></script>
+</body>
+</html>
 
 
