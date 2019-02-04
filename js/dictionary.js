@@ -62,6 +62,11 @@ function select_dictionary(dictionary) {
 			window.url += "appearance.json";
 			window.imgend = document.getElementById("img_appearance").getAttribute('src');
 		break;
+			
+		case "english_tomorrow":
+			currDict = "tomorrow's English";
+			window.url += "english_tomorrow.json";
+			window.imgend = document.getElementById("img_appearance").getAttribute('src');
 
 		default:
 			currDict = "none";
