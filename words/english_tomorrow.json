@@ -1,0 +1,23 @@
+{
+  "words": [
+    ["cure", ["лечение"], "noun"],
+    ["device", ["устройство"], "noun"],
+    ["fraud", ["мошенничество"], "noun"],
+    ["genius", ["гений"], "noun"],
+    ["growth", ["рост"], "noun"],
+    ["manual", ["руководство"], "noun"],
+    ["remedy", ["средство"], "noun"],
+    ["claim", ["требовать"], "verb"],
+    ["confess", ["исповедовать"], "verb"],
+    ["declare", ["заявлять"], "verb"],
+    ["get down to", ["засесть"], "verb"],
+    ["reveal", ["открыть"], "verb"],
+    ["set up", ["установить"], "verb"],
+    ["deliberately", ["намеренно"], "adverb"],
+    ["conscious", ["сознательный"], "adj."],
+    ["innovative", ["новаторский"], "adj."],
+    ["particular", ["особый"], "adj."],
+    ["unlikely", ["маловероятно"], "noun"],
+    ["unlimited", ["безлимитный"], "adj."]
+  ]
+}
