@@ -67,6 +67,7 @@ function select_dictionary(dictionary) {
 			currDict = "tomorrow's English";
 			window.url += "english_tomorrow.json";
 			window.imgend = document.getElementById("img_appearance").getAttribute('src');
+		break;
 
 		default:
 			currDict = "none";
