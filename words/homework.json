@@ -1,0 +1,18 @@
+{
+  "words": [
+    ["accompany", ["сопроождать"], "verb"],
+    ["encounter", ["испытвать"], "verb"],
+    ["overcome", ["преодолвевать"], "verb"],
+    ["rechedule", ["переназначить"], "verb"],
+    ["seek", ["искать"], "verb"],
+    ["venture", ["рисковать"], "verb"],
+    ["destination", ["назначение"], "noun"],
+    ["itnerary", ["план поездки"], "noun"],
+    ["journey", ["поездка"], "noun"],
+    ["dready", ["унылый"], "adj."],
+    ["intense", ["сильное"], "adj."],
+    ["pivotal", ["ведущий"], "adj."],
+    ["profound", ["значительный"], "adj."],
+    ["valueable", ["значимый"], "adj."]
+  ]
+}
