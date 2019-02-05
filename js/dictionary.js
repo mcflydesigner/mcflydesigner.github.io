@@ -68,6 +68,12 @@ function select_dictionary(dictionary) {
 			window.url += "english_tomorrow.json";
 			window.imgend = document.getElementById("img_appearance").getAttribute('src');
 		break;
+			
+		case "homework":
+			currDict = "homework";
+			window.url += "homework.json";
+			window.imgend = document.getElementById("img_appearance").getAttribute('src');
+		break;
 
 		default:
 			currDict = "none";
