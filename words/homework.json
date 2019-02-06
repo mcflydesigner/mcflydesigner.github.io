@@ -1,18 +1,19 @@
 {
   "words": [
-    ["accompany", ["сопровождать"], "verb"],
-    ["encounter", ["испытывать"], "verb"],
-    ["overcome", ["преодолевать"], "verb"],
-    ["reschedule", ["переназначить"], "verb"],
-    ["seek", ["искать"], "verb"],
-    ["venture", ["рисковать"], "verb"],
-    ["destination", ["назначение"], "noun"],
-    ["itinerary", ["план поездки"], "noun"],
-    ["journey", ["поездка"], "noun"],
-    ["dready", ["унылый"], "adj."],
-    ["intense", ["сильный"], "adj."],
-    ["pivotal", ["ведущий"], "adj."],
-    ["profound", ["значительный"], "adj."],
-    ["valueable", ["значимый"], "adj."]
+    ["amenity", ["приятность", "мягкость"], "noun"],
+    ["commuter", ["пассажир"], "noun"],
+    ["congestion", ["скопление", "собирание"], "noun"],
+    ["housing", ["размещение", "расселение"], "noun"],
+    ["resident", ["житель"], "noun"],
+    ["immigrant", ["иммигрант"], "noun"],
+    ["historic", ["исторический"], "adj."],
+    ["rural", ["деревенский"], "adj."],
+    ["infrastructure", ["инфраструктура"], "noun"],
+    ["inhabitant", ["житель", "обитатель"], "noun"],
+    ["neighbourhood", ["округ"], "noun"],
+    ["bustling", ["суета"], "noun"],
+    ["pioneering", ["новаторский"], "adj."],
+    ["sprawling", ["расползающийся", "развалившийся"], "adj."],
+    ["urban", ["городской"], "adj."]
   ]
 }
