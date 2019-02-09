@@ -1,19 +1,21 @@
 {
   "words": [
-    ["amenity", ["приятность", "мягкость"], "noun"],
-    ["commuter", ["пассажир"], "noun"],
-    ["congestion", ["скопление", "собирание"], "noun"],
-    ["housing", ["размещение", "расселение"], "noun"],
-    ["resident", ["житель"], "noun"],
-    ["immigrant", ["иммигрант"], "noun"],
-    ["historic", ["исторический"], "adj."],
-    ["rural", ["деревенский"], "adj."],
-    ["infrastructure", ["инфраструктура"], "noun"],
-    ["inhabitant", ["житель", "обитатель"], "noun"],
-    ["neighbourhood", ["округ"], "noun"],
-    ["bustling", ["суета"], "noun"],
-    ["pioneering", ["новаторский"], "adj."],
-    ["sprawling", ["расползающийся", "развалившийся"], "adj."],
-    ["urban", ["городской"], "adj."]
+    ["acid", ["кислота"], "none"],
+    ["absence", ["отсутствие"], "none"],
+    ["absorb", ["всасывать","впитывать"], "none"],
+    ["abuse", ["оскорбление"], "none"],
+    ["accomplish", ["достигать"], "none"],
+    ["bake", ["печь"], "none"],
+    ["balance", ["весы"], "none"],
+    ["barely", ["просто"], "none"],
+    ["capability", ["способность"], "none"],
+    ["care", ["забота"], "none"],
+    ["cast", ["бросить"], "none"],
+    ["dare", ["осмелиться"], "none"],
+    ["debate", ["дебаты"], "none"],
+    ["debt", ["долг"], "none"],
+    ["deer", ["олень"], "none"],
+    ["defeat", ["одержать победу"], "none"],
+    ["defend", ["защищать"], "none"]
   ]
 }
